@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { type AgentId, type Finding } from "@/agents/types";
@@ -85,6 +85,7 @@ export default function ExceptionsPage() {
     <div className="space-y-5">
       <PageHeading description={`${open.length} open, ${critical} critical. Ranked by severity, then money at stake.`} title="Exceptions" />
 
+      <div className={requested ? "hidden space-y-5 xl:block" : "space-y-5"}>
       <AgentFilter counts={counts} onChange={(v) => set({ agent: v === "all" ? null : v, f: null })} value={agent} />
 
       <Tabs
@@ -92,12 +93,13 @@ export default function ExceptionsPage() {
         items={VIEWS.map((v) => ({ label: v.label, value: v.value, active: v.value === current.value, count: findings.filter((f) => v.match(f) && (agent === "all" || f.agentId === agent)).length }))}
         onSelect={(v) => set({ view: v, f: null })}
       />
+      </div>
 
       {list.length === 0 && !selected ? (
         <EmptyState description="Nothing matches this view. New findings land here as the feeds update." icon={<CheckCircle2 aria-hidden="true" className="h-6 w-6" />} title="Queue clear" />
       ) : (
         <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-12">
-          <nav aria-label="Ranked findings" className="pane-sticky scrollbar-thin xl:col-span-5 2xl:col-span-4">
+          <nav aria-label="Ranked findings" className={["pane-sticky scrollbar-thin xl:col-span-5 2xl:col-span-4", requested ? "hidden xl:block" : ""].join(" ")}>
             <ol className="stagger space-y-2 xl:pr-1">
               {list.map((f, i) => {
                 const active = selected?.id === f.id;
@@ -134,7 +136,13 @@ export default function ExceptionsPage() {
               })}
             </ol>
           </nav>
-          <div className="scroll-mt-24 xl:col-span-7 2xl:col-span-8" ref={detailRef}>
+          <div className={["scroll-mt-24 xl:col-span-7 2xl:col-span-8", requested ? "" : "hidden xl:block"].join(" ")} ref={detailRef}>
+            {requested ? (
+              <button className="focus-ring mb-3 inline-flex items-center gap-1.5 rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800 xl:hidden" onClick={() => set({ f: null })} type="button">
+                <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+                All findings
+              </button>
+            ) : null}
             {selected ? <FindingDetail finding={selected} key={selected.id} /> : null}
           </div>
         </div>

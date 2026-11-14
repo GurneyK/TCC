@@ -32,7 +32,7 @@ function Logo() {
   );
 }
 
-function SideNav({ onNavigate }: { onNavigate?: () => void }) {
+function SideNav({ onNavigate, compact = false }: { onNavigate?: () => void; compact?: boolean }) {
   const { pathname } = useLocation();
   const open = useOpenFindings();
   const pending = useTreasury((s) => s.data.payments.filter((p) => p.status === "pending_approval").length);
@@ -58,7 +58,7 @@ function SideNav({ onNavigate }: { onNavigate?: () => void }) {
   );
   return (
     <div className="h-full" onClickCapture={(e) => (e.target as HTMLElement).closest("a") && onNavigate?.()}>
-      <Sidebar footer={<UserSwitcher onNavigate={onNavigate} />} header={<Logo />} navLabel="Main" sections={sections} variant="panel" />
+      <Sidebar footer={<UserSwitcher onNavigate={onNavigate} />} header={compact ? <></> : <Logo />} navLabel="Main" sections={sections} variant="panel" />
     </div>
   );
 }
@@ -112,9 +112,9 @@ export function AppShell() {
           </main>
         </div>
       </div>
-      <Drawer onOpenChange={setMenuOpen} open={menuOpen} side="left" title="Menu">
+      <Drawer onOpenChange={setMenuOpen} open={menuOpen} description="Command Center" side="left" title="Lumen Treasury">
         <div className="-m-6">
-          <SideNav onNavigate={() => setMenuOpen(false)} />
+          <SideNav compact onNavigate={() => setMenuOpen(false)} />
         </div>
       </Drawer>
       <RecordDrawer />

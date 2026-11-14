@@ -62,7 +62,7 @@ export default function PaymentsPage() {
     <div className="space-y-6">
       <PageHeading
         actions={
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex flex-col items-start gap-1 md:items-end">
             <Button
               aria-describedby={block ? "release-why" : undefined}
               disabled={Boolean(block)}
@@ -76,7 +76,7 @@ export default function PaymentsPage() {
               Release approved ({approved.length})
             </Button>
             {block ? (
-              <p className="max-w-64 text-right text-xs text-gray-600" id="release-why">
+              <p className="max-w-64 text-xs text-gray-600 md:text-right" id="release-why">
                 {block}
               </p>
             ) : null}
@@ -92,6 +92,40 @@ export default function PaymentsPage() {
         onSelect={(v) => set({ tab: v })}
       />
 
+      <ul aria-label={`${current.label} payments`} className="stagger space-y-2 md:hidden">
+        {rows.length === 0 ? <li className="rounded-habibiLg border border-gray-200 bg-white p-4 text-sm text-gray-600">Nothing in this queue.</li> : null}
+        {rows.map((p) => {
+          const s = scores.get(p.id)?.score;
+          return (
+            <li key={p.id}>
+              <button
+                className={["focus-ring w-full rounded-habibiLg border bg-white p-4 text-left shadow-habibiXs transition-colors", p.id === selectedId ? "border-brand-300" : "border-gray-200 hover:border-gray-300"].join(" ")}
+                onClick={() => set({ p: p.id })}
+                type="button"
+              >
+                <span className="flex items-start justify-between gap-3">
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-gray-900">{counterpartyName(data, p.counterpartyId)}</span>
+                    <span className="block text-xs text-gray-500">
+                      {p.id} · {formatDate(p.valueDate)}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-right">
+                    <span className="block text-sm font-semibold tabular-nums text-gray-900">{formatWithCode(p.amount)}</span>
+                    <span className="block text-xs tabular-nums text-gray-500">{usd(p.amount, data.rates)}</span>
+                  </span>
+                </span>
+                <span className="mt-3 flex flex-wrap items-center gap-2">
+                  {s === undefined ? <span className="text-xs text-gray-500">Not scored</span> : <Badge variant={riskTone(s)}>Risk {s} of 100</Badge>}
+                  <StatusCell p={p} />
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className="hidden md:block">
       <Table
         caption={`${current.label} payments. Select a row to open the payment.`}
         columns={[
@@ -118,6 +152,7 @@ export default function PaymentsPage() {
         onRowClick={(p) => set({ p: p.id })}
         rows={rows}
       />
+      </div>
 
       <PaymentDrawer assessment={selectedId ? scores.get(selectedId) : undefined} onClose={() => set({ p: null })} paymentId={selectedId} />
     </div>

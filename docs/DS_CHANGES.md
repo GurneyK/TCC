@@ -49,3 +49,4 @@ Same rules: every new prop is optional and the default render is unchanged.
 | LineChart | `ui/charts/LineChart.tsx` | Promote | `width`, `area` | Wider plot on desktop so labels stay readable, a soft area fill, and a draw in animation that is off under reduced motion. | Yes |
 | Global styles | `src/index.css` | Add | none | Motion utilities (`animate-rise`, `animate-pop`, `animate-grow`, `stagger`, `lift`, `sheen`, `live-pulse`, `draw-line`), `pane-sticky` for split panes and `scrollbar-thin`. All disabled under reduced motion. | Yes |
 | ChartCard | `features/shared/ChartCard.tsx` | a11y | none | The table toggle is an icon button labelled "Show {title} as a table" or "as a chart". | n/a, TCC only |
+| Tabs | `ui/navigation/Tabs.tsx` | Responsive | none | Tabs scroll sideways on narrow screens instead of wrapping to a second row. Labels never wrap. | Yes |

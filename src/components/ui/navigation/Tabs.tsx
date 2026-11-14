@@ -21,13 +21,14 @@ const defaultItems: TabItem[] = [
 
 export function Tabs({ ariaLabel = "Sections", items = defaultItems, onSelect }: TabsProps) {
   return (
-    <div className="border-b border-gray-200">
-      <div aria-label={ariaLabel} className="-mb-px flex flex-wrap gap-4" role="tablist">
+    <div className="scrollbar-none overflow-x-auto">
+      <div className="w-max min-w-full border-b border-gray-200">
+      <div aria-label={ariaLabel} className="-mb-px flex gap-4" role="tablist">
         {items.map((item) => (
           <button
             aria-selected={Boolean(item.active)}
             className={[
-              "focus-ring inline-flex items-center gap-2 border-b-2 px-1 py-3 text-sm font-semibold",
+              "focus-ring inline-flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-1 py-3 text-sm font-semibold",
               item.active ? "border-brand-700 text-brand-700" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
             ].join(" ")}
             key={item.label}
@@ -43,6 +44,7 @@ export function Tabs({ ariaLabel = "Sections", items = defaultItems, onSelect }:
             ) : null}
           </button>
         ))}
+      </div>
       </div>
     </div>
   );
