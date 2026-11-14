@@ -1,4 +1,4 @@
-import { Check, ChevronsUpDown, PlayCircle, RotateCcw, Users } from "lucide-react";
+import { Check, ChevronsUpDown, Users } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Avatar } from "@/components/ui/avatar/Avatar";
 import { Button } from "@/components/ui/button/Button";
@@ -76,24 +76,22 @@ export function UserSwitcher({ onNavigate }: { onNavigate?: () => void }) {
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <Button
-                    leadingIcon={<PlayCircle aria-hidden="true" className="h-4 w-4" />}
-                    onClick={() => {
+                  <Button                    onClick={() => {
                       setOpen(false);
                       onNavigate?.();
                       startTour();
                     }}
+                    className="w-full"
                     size="sm"
                     variant="secondaryGray"
                   >
                     Guided tour
                   </Button>
-                  <Button
-                    leadingIcon={<RotateCcw aria-hidden="true" className="h-4 w-4" />}
-                    onClick={() => {
+                  <Button                    onClick={() => {
                       setOpen(false);
                       setConfirmReset(true);
                     }}
+                    className="w-full"
                     size="sm"
                     variant="secondaryGray"
                   >
