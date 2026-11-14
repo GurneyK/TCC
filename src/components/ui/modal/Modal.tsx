@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useId, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "../button/Button";
 import { useDialogFocus } from "../drawer/useDialogFocus";
 
@@ -18,7 +19,7 @@ export function Modal({ children, description, footer, onOpenChange, open, title
   const ref = useDialogFocus<HTMLDivElement>(open, () => onOpenChange(false));
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/60 p-4" role="presentation">
       <div
         aria-describedby={description ? descId : undefined}
@@ -61,6 +62,7 @@ export function Modal({ children, description, footer, onOpenChange, open, title
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

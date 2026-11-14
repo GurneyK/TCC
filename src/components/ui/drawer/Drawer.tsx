@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useId, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { useDialogFocus } from "./useDialogFocus";
 
 export interface DrawerProps {
@@ -19,7 +20,7 @@ export function Drawer({ children, description, footer, onOpenChange, open, side
   const ref = useDialogFocus<HTMLElement>(open, () => onOpenChange(false));
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 bg-gray-900/50" onClick={() => onOpenChange(false)} role="presentation">
       <aside
         aria-labelledby={titleId}
@@ -52,6 +53,7 @@ export function Drawer({ children, description, footer, onOpenChange, open, side
         <div className="flex-1 overflow-y-auto p-6">{children}</div>
         {footer ? <div className="border-t border-gray-200 bg-gray-50 px-6 py-4">{footer}</div> : null}
       </aside>
-    </div>
+    </div>,
+    document.body,
   );
 }

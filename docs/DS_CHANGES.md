@@ -31,5 +31,6 @@ All of these render exactly as before when used with no props.
 | FileUpload | `ui/forms/FileUpload.tsx` | Promote | `accept`, `onFile` | Reads the picked file. Resets the input so the same file can be picked twice. | Yes |
 | Alert | `ui/alert/Alert.tsx` | Promote | `onDismiss` | The dismiss button was inert. | Yes |
 | Badge | `ui/badge/Badge.tsx` | Fix | none | Added `whitespace-nowrap`. Badges were wrapping inside table cells ("94 of / 100"). | Yes |
+| Drawer, Modal portal | `ui/drawer/Drawer.tsx`, `ui/modal/Modal.tsx` | Fix | none | Render into `document.body` with a portal. Inside a `space-y-*` parent the fixed backdrop picked up a top margin and left a strip undimmed. | Yes |
 | Drawer, Modal close | `ui/drawer/Drawer.tsx`, `ui/modal/Modal.tsx` | a11y | none | Close icon moved from `gray-400` to `gray-500` to reach 3:1 non text contrast. | Yes |
 | Global styles | `src/index.css` | a11y | none | `.focus-ring` now adds a 2px `brand-700` outline on top of the soft ring, so focus is visible on white (WCAG 2.4.11). Added a `prefers-reduced-motion` rule and the guided demo highlight style. | Yes |
