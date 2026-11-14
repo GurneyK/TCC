@@ -29,9 +29,8 @@ export default function SourcesPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        description="Every feed the hub reads, with its service level. A feed that misses its window is marked delayed, and every number built from it carries a Stale badge."
-        eyebrow="Data sources"
-        title="Feeds and uploads"
+        description="Every feed the hub reads and its service level. Late feeds mark dependent numbers as stale."
+        title="Data sources"
       />
 
       {delayed.map((s) => (

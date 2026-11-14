@@ -87,9 +87,8 @@ export default function AuditPage() {
             Export CSV
           </Button>
         }
-        description="Every agent finding and every human decision: who, when, what and why. Events are append only."
-        eyebrow="Audit log"
-        title="Who did what"
+        description="Every agent finding and every human decision. Append only."
+        title="Audit log"
       />
 
       <div aria-label="Filter the audit log" className="grid gap-3 rounded-habibiLg border border-gray-200 bg-white p-4 shadow-habibiXs md:grid-cols-2 xl:grid-cols-5" data-tour="audit-filters" role="search">

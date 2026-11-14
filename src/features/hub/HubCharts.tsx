@@ -1,5 +1,5 @@
 import { LineChart } from "@/components/ui/charts/LineChart";
-import { StackedBarChart } from "@/components/ui/charts/StackedBarChart";
+import { BarList } from "../shared/BarList";
 import { Table } from "@/components/ui/table/Table";
 import type { TreasurySnapshot } from "@/data/types";
 import { formatDate } from "@/lib/dates";
@@ -10,6 +10,8 @@ import { compactMajor, REGION_LABEL, useForecasts, type CashTotals } from "../sh
 const usd = (minor: number) => formatWithCode({ minor, currency: "USD" }, { compact: true });
 
 export function GroupForecastCard({ snapshot }: { snapshot: TreasurySnapshot }) {
+  // A wide chart reads well on a laptop. On a phone the default shape keeps the labels legible.
+  const wide = typeof window !== "undefined" && window.matchMedia?.("(min-width: 768px)").matches;
   const base = useForecasts(snapshot, "base");
   const stress = useForecasts(snapshot, "stress");
   const weeks = base.entities[0]?.weeks ?? [];
@@ -21,8 +23,10 @@ export function GroupForecastCard({ snapshot }: { snapshot: TreasurySnapshot }) 
     <ChartCard
       chart={
         <LineChart
+          area
           ariaLabel={takeaway}
           className="h-auto w-full"
+          width={wide ? 540 : 360}
           formatValue={(v) => compactMajor(v)}
           series={[
             { label: "Base", values: base.group },
@@ -57,7 +61,6 @@ export function GroupForecastCard({ snapshot }: { snapshot: TreasurySnapshot }) 
 
 export function CashByRegion({ totals }: { totals: CashTotals }) {
   const rows = [...totals.byRegion].sort((a, b) => b.usd - a.usd);
-  const max = Math.max(...rows.map((r) => r.usd), 1);
   const share = (v: number) => Math.round((v / totals.totalUsd) * 100);
   const takeaway = `${REGION_LABEL[rows[0].region]} holds ${share(rows[0].usd)}% of group cash. ` + rows.slice(1).map((r) => `${REGION_LABEL[r.region]} ${share(r.usd)}%`).join(", ") + ".";
 
@@ -65,18 +68,15 @@ export function CashByRegion({ totals }: { totals: CashTotals }) {
     <ChartCard
       chart={
         <div>
-          <StackedBarChart
-            ariaLabel={takeaway}
-            bars={rows.map((r) => ({ label: r.region, segments: [{ label: r.region, percent: (r.usd / max) * 100, tone: "brand" }] }))}
+          <p className="sr-only">{takeaway}</p>
+          <BarList
+            label="Cash by region"
+            rows={rows.map((r) => ({ key: r.region, label: REGION_LABEL[r.region], value: usd(r.usd), percent: share(r.usd) }))}
           />
-          <ul className="mt-4 space-y-1 text-sm text-gray-600">
-            {rows.map((r) => (
-              <li className="flex justify-between gap-3" key={r.region}>
-                <span>{REGION_LABEL[r.region]}</span>
-                <span className="font-semibold tabular-nums text-gray-900">{usd(r.usd)}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-5 flex items-baseline justify-between border-t border-gray-100 pt-4 text-sm">
+            <span className="text-gray-600">Group total</span>
+            <span className="font-semibold tabular-nums text-gray-900">{usd(totals.totalUsd)}</span>
+          </p>
         </div>
       }
       description="USD equivalent at today's rates"

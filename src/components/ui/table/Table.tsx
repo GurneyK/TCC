@@ -6,6 +6,10 @@ export interface TableColumn<Row> {
   render?: (row: Row) => ReactNode;
   /** Right align numeric columns. */
   align?: "left" | "right";
+  /** Keep the cell on one line. Right aligned cells never wrap. */
+  nowrap?: boolean;
+  /** Column width, like "28%". Most useful with layout fixed. */
+  width?: string;
 }
 
 export interface TableProps<Row> {
@@ -19,6 +23,8 @@ export interface TableProps<Row> {
   onRowClick?: (row: Row) => void;
   isRowSelected?: (row: Row) => boolean;
   emptyMessage?: string;
+  /** fixed gives every table on a page the same column widths. */
+  layout?: "auto" | "fixed";
 }
 
 export function Table<Row extends object>({
@@ -28,6 +34,7 @@ export function Table<Row extends object>({
   emptyMessage = "Nothing to show.",
   getRowKey,
   isRowSelected,
+  layout = "auto",
   onRowClick,
   rows,
 }: TableProps<Row>) {
@@ -41,12 +48,12 @@ export function Table<Row extends object>({
 
   return (
     <div className="overflow-x-auto rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
-      <table aria-label={caption ? undefined : ariaLabel} className="min-w-[720px] w-full border-collapse text-left text-sm">
+      <table aria-label={caption ? undefined : ariaLabel} className={["min-w-[720px] w-full border-collapse text-left text-sm", layout === "fixed" ? "table-fixed" : ""].join(" ")}>
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead className="bg-gray-50 text-xs font-semibold uppercase tracking-[0.06em] text-gray-500">
           <tr>
             {columns.map((column) => (
-              <th className={["px-4 py-3", column.align === "right" ? "text-right" : ""].join(" ")} key={String(column.key)} scope="col">
+              <th className={["px-4 py-3", column.align === "right" ? "text-right" : "", column.nowrap ? "whitespace-nowrap" : ""].join(" ")} key={String(column.key)} scope="col" style={column.width ? { width: column.width } : undefined}>
                 {column.header}
               </th>
             ))}
@@ -76,7 +83,7 @@ export function Table<Row extends object>({
                 tabIndex={onRowClick ? 0 : undefined}
               >
                 {columns.map((column) => (
-                  <td className={["px-4 py-3", column.align === "right" ? "whitespace-nowrap text-right tabular-nums" : ""].join(" ")} key={String(column.key)}>
+                  <td className={["px-4 py-3", column.align === "right" ? "whitespace-nowrap text-right tabular-nums" : "", column.nowrap ? "whitespace-nowrap" : ""].join(" ")} key={String(column.key)}>
                     {column.render ? column.render(row) : String((row as Record<string, unknown>)[column.key as string] ?? "")}
                   </td>
                 ))}

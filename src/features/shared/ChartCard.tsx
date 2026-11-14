@@ -25,14 +25,13 @@ export function ChartCard({ chart, description, legend, table, title, toolbar }:
           {toolbar}
           <Button
             aria-controls={regionId}
-            aria-pressed={asTable}
+            aria-label={asTable ? `Show ${title} as a chart` : `Show ${title} as a table`}
             leadingIcon={asTable ? <BarChart3 aria-hidden="true" className="h-4 w-4" /> : <Table2 aria-hidden="true" className="h-4 w-4" />}
             onClick={() => setAsTable((v) => !v)}
-            size="sm"
+            size="icon"
+            title={asTable ? "Show as chart" : "Show as table"}
             variant="tertiaryGray"
-          >
-            {asTable ? "View as chart" : "View as table"}
-          </Button>
+          />
         </div>
       }
     >

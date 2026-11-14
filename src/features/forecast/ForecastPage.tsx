@@ -62,8 +62,7 @@ export default function ForecastPage() {
             />
           </>
         }
-        description="Thirteen weeks of cash per entity in local currency. Receipts follow each customer's real payment habits. Stress pushes receipts 10 days later and 15% lower."
-        eyebrow="Cash forecast"
+        description="13 weeks per entity in local currency. Stress pushes receipts 10 days later and 15% lower."
         title={entity ? entity.name : "Group cash forecast"}
       />
 

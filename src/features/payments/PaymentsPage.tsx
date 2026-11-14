@@ -82,9 +82,8 @@ export default function PaymentsPage() {
             ) : null}
           </div>
         }
-        description="Analysts submit, the Group Treasurer approves, and nobody approves their own payment. A payment with an open high or critical finding can't be approved until someone resolves it."
-        eyebrow="Payments"
-        title="Approvals and release"
+        description="Analysts submit, the Group Treasurer approves. Nobody approves their own payment, and open high risk findings block approval."
+        title="Payments"
       />
 
       <Tabs
@@ -96,11 +95,11 @@ export default function PaymentsPage() {
       <Table
         caption={`${current.label} payments. Select a row to open the payment.`}
         columns={[
-          { key: "id", header: "Payment", render: (p) => <span className="font-medium text-gray-900">{p.id}</span> },
+          { key: "id", header: "Payment", nowrap: true, render: (p) => <span className="font-medium text-gray-900">{p.id}</span> },
           { key: "to", header: "Payee", render: (p) => counterpartyName(data, p.counterpartyId) },
           { key: "amount", header: "Amount", align: "right", render: (p) => formatWithCode(p.amount) },
           { key: "usd", header: "USD", align: "right", render: (p) => usd(p.amount, data.rates) },
-          { key: "date", header: "Value date", render: (p) => formatDate(p.valueDate) },
+          { key: "date", header: "Value date", nowrap: true, render: (p) => formatDate(p.valueDate) },
           {
             key: "risk",
             header: "Risk",
@@ -110,7 +109,7 @@ export default function PaymentsPage() {
               return <Badge variant={riskTone(s)}>{s} of 100</Badge>;
             },
           },
-          { key: "by", header: "Created by", render: (p) => p.createdBy },
+          { key: "by", header: "Created by", nowrap: true, render: (p) => p.createdBy },
           { key: "status", header: "Status", render: (p) => <StatusCell p={p} /> },
         ]}
         emptyMessage="Nothing in this queue."

@@ -22,18 +22,22 @@ export interface LineChartProps {
   formatValue?: (value: number) => string;
   /** Sizing classes. Use "h-auto w-full" to scale with the card width. */
   className?: string;
+  /** Width of the drawing in chart units. Height stays 180, so a larger width gives a wider, flatter chart. */
+  width?: number;
+  /** Soft fill under the first line. */
+  area?: boolean;
 }
 
 const defaultSeries: LineSeries[] = [{ label: "Series", values: [48, 68, 62, 102, 94, 128, 120] }];
 
-const W = 360;
 const H = 180;
 const LEFT = 30;
-const RIGHT = 340;
 const TOP = 20;
 const BOTTOM = 160;
 
-export function LineChart({ ariaLabel = "Line chart", className = "h-48 w-full", formatValue, series = defaultSeries, threshold, xLabels }: LineChartProps) {
+export function LineChart({ area = false, ariaLabel = "Line chart", className = "h-48 w-full", formatValue, series = defaultSeries, threshold, width = 360, xLabels }: LineChartProps) {
+  const W = width;
+  const RIGHT = W - 20;
   const all = series.flatMap((s) => s.values).concat(threshold ? [threshold.value] : []);
   const rawMin = Math.min(...all);
   const rawMax = Math.max(...all);
@@ -65,13 +69,23 @@ export function LineChart({ ariaLabel = "Line chart", className = "h-48 w-full",
           </text>
         </g>
       ) : null}
+      {area && series[0] ? (
+        <polygon
+          className="animate-rise"
+          fill={series[0].tone === "info" ? chartTokens.info : chartTokens.brand}
+          fillOpacity="0.08"
+          points={`${x(0)},${BOTTOM} ${series[0].values.map((v, i) => `${x(i)},${y(v)}`).join(" ")} ${x(series[0].values.length - 1)},${BOTTOM}`}
+        />
+      ) : null}
       {series.map((s) => {
         const stroke = s.tone === "info" ? chartTokens.info : chartTokens.brand;
         const points = s.values.map((v, i) => `${x(i)},${y(v)}`).join(" ");
         return (
           <g key={s.label}>
             <polyline
+              className={s.dashed ? "animate-rise" : "draw-line"}
               fill="none"
+              pathLength={s.dashed ? undefined : 1}
               points={points}
               stroke={stroke}
               strokeDasharray={s.dashed ? "6 5" : undefined}

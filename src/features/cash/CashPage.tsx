@@ -56,11 +56,10 @@ export default function CashPage() {
         description={
           <>
             {data.accounts.length} accounts worth <strong className="font-semibold text-gray-900">{usd(totals.totalUsd)}</strong> at today's rates.
-            {totals.staleAccounts ? ` ${totals.staleAccounts} of them come from a delayed feed and show their last known balance.` : ""}
+            {totals.staleAccounts ? ` ${totals.staleAccounts} come from a late feed and show their last known balance.` : ""}
           </>
         }
-        eyebrow="Cash positions"
-        title="Every bank account"
+        title="Cash positions"
       />
 
       {groups.map((g) => (
@@ -76,11 +75,11 @@ export default function CashPage() {
           <Table
             caption={`Accounts for ${g.label}. Select a row for detail.`}
             columns={[
-              { key: "account", header: "Account", render: (a) => <span className="font-medium text-gray-900">{bankName(data, a.bankId)} {a.maskedNumber}</span> },
-              { key: "entity", header: groupBy === "entity" ? "Type" : "Entity", render: (a) => (groupBy === "entity" ? <Badge>{a.type}</Badge> : entityName(data, a.entityId)) },
-              { key: "balance", header: "Balance", align: "right", render: (a) => formatWithCode(a.balance) },
-              { key: "available", header: "Available", align: "right", render: (a) => formatWithCode(a.availableBalance) },
-              { key: "usd", header: "USD", align: "right", render: (a) => usd(toUsd(a.balance, data.rates).minor) },
+              { key: "account", header: "Account", width: "26%", render: (a) => <span className="font-medium text-gray-900">{bankName(data, a.bankId)} {a.maskedNumber}</span> },
+              { key: "entity", header: groupBy === "entity" ? "Type" : "Entity", width: groupBy === "entity" ? "13%" : "20%", render: (a) => (groupBy === "entity" ? <Badge>{a.type}</Badge> : entityName(data, a.entityId)) },
+              { key: "balance", header: "Balance", align: "right", width: "17%", render: (a) => formatWithCode(a.balance) },
+              { key: "available", header: "Available", align: "right", width: "17%", render: (a) => formatWithCode(a.availableBalance) },
+              { key: "usd", header: "USD", align: "right", width: "13%", render: (a) => usd(toUsd(a.balance, data.rates).minor) },
               {
                 key: "fresh",
                 header: "Freshness",
@@ -92,6 +91,7 @@ export default function CashPage() {
             ]}
             getRowKey={(a) => a.id}
             isRowSelected={(a) => a.id === selected?.id}
+            layout="fixed"
             onRowClick={setSelected}
             rows={g.accounts}
           />

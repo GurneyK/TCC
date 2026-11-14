@@ -1,4 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const NAMES = { analyst: "Priya Shah", treasurer: "Daniel Okafor", auditor: "Mei Lin" } as const;
+
+/** Switch user from the menu in the bottom left of the sidebar. */
+async function signInAs(page: Page, role: keyof typeof NAMES) {
+  await page.getByRole("button", { name: /Switch user$/ }).click();
+  await page.getByRole("group", { name: "Switch user" }).getByRole("button", { name: new RegExp(NAMES[role]) }).click();
+  await expect(page.getByRole("button", { name: new RegExp(`Signed in as ${NAMES[role]}`) })).toBeVisible();
+}
 
 test.beforeEach(async ({ page }) => {
   await page.goto("#/");
@@ -11,14 +20,14 @@ test("S1: callback not confirmed rejects the payment and the trail shows it", as
   await expect(page.getByRole("heading", { name: /Bank details changed 2 days before/ })).toBeVisible();
 
   // Daniel can't approve it while the critical finding is open.
-  await page.getByLabel("Viewing as").selectOption("treasurer");
+  await signInAs(page, "treasurer");
   await page.goto("#/payments?p=pay-s1-orchard");
   await expect(page.getByRole("button", { name: "Approve", exact: true })).toBeDisabled();
   await expect(page.getByText(/Open critical finding/)).toBeVisible();
   await page.keyboard.press("Escape");
 
   // Priya records the callback.
-  await page.getByLabel("Viewing as").selectOption("analyst");
+  await signInAs(page, "analyst");
   await page.goto("#/exceptions?f=pr-pay-s1-orchard");
   await page.getByRole("button", { name: "Record callback result" }).click();
   await page.getByRole("radio", { name: /Not confirmed/ }).check();
@@ -26,7 +35,7 @@ test("S1: callback not confirmed rejects the payment and the trail shows it", as
   await expect(page.getByText(/Payment pay-s1-orchard is now rejected/)).toBeVisible();
 
   // Mei sees it in the audit log.
-  await page.getByLabel("Viewing as").selectOption("auditor");
+  await signInAs(page, "auditor");
   await page.goto("#/audit?q=orchard");
   await expect(page.getByRole("cell", { name: "Auto rejected payment" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Run now" })).toHaveCount(0);
@@ -54,7 +63,7 @@ test("S8: retry sync clears the stale warning and CSV import reconciles", async 
 });
 
 test("guided demo walks all 6 steps", async ({ page }) => {
-  await page.getByRole("button", { name: "Start guided demo" }).click();
+  await page.getByRole("button", { name: "Start tour" }).click();
   for (let i = 1; i <= 6; i += 1) {
     await expect(page.getByRole("complementary", { name: `Guided demo, step ${i} of 6` })).toBeVisible();
     await page.getByRole("button", { name: i === 6 ? "Finish" : "Next" }).click();

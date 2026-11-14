@@ -1,104 +1,77 @@
-import { Menu, Pause, Play, RotateCcw } from "lucide-react";
-import { useId, useState } from "react";
+import { Bell, ChevronRight, Menu, Pause, Play } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button/Button";
-import { Modal } from "@/components/ui/modal/Modal";
-import { SegmentedControl } from "@/components/ui/segmented-control/SegmentedControl";
-import { Select } from "@/components/ui/select/Select";
-import { StatusDot } from "@/components/ui/status-dot/StatusDot";
-import type { Role } from "@/data/types";
-import { PERSONAS } from "@/data/world";
 import { formatDateTime } from "@/lib/dates";
-import { useUi } from "@/store/hooks";
+import { useOpenFindings } from "@/store/hooks";
 import { useTreasury } from "@/store/useTreasury";
+import { navEntryFor } from "./nav";
 
-export function TopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
-  const role = useTreasury((s) => s.role);
-  const setRole = useTreasury((s) => s.setRole);
+function LiveStatus() {
   const now = useTreasury((s) => s.now);
   const sim = useTreasury((s) => s.sim);
   const setPaused = useTreasury((s) => s.setPaused);
-  const setSpeed = useTreasury((s) => s.setSpeed);
-  const reset = useTreasury((s) => s.reset);
-  const notify = useUi((s) => s.notify);
-  const [confirmReset, setConfirmReset] = useState(false);
-  const roleId = useId();
+  return (
+    <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-white py-1 pl-3 pr-1 shadow-habibiXs">
+      <span aria-hidden="true" className={["h-2 w-2 rounded-full", sim.paused ? "bg-gray-400" : "live-pulse bg-success-500"].join(" ")} />
+      <span className="ml-1 text-xs font-semibold text-gray-900">{sim.paused ? "Paused" : "Live"}</span>
+      <span className="hidden text-xs text-gray-500 sm:inline">
+        <span aria-hidden="true"> · </span>
+        <time dateTime={now}>{formatDateTime(now)}</time>
+      </span>
+      <button
+        aria-label={sim.paused ? "Resume live feed" : "Pause live feed"}
+        className="focus-ring ml-1 flex h-7 w-7 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+        onClick={() => setPaused(!sim.paused)}
+        title={sim.paused ? "Resume live feed" : "Pause live feed"}
+        type="button"
+      >
+        {sim.paused ? <Play aria-hidden="true" className="h-3.5 w-3.5" /> : <Pause aria-hidden="true" className="h-3.5 w-3.5" />}
+      </button>
+    </div>
+  );
+}
+
+function Alerts() {
+  const open = useOpenFindings();
+  const critical = open.filter((f) => f.severity === "critical").length;
+  return (
+    <a
+      aria-label={critical ? `${critical} critical findings. Open exceptions` : "No critical findings. Open exceptions"}
+      className="focus-ring relative flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-habibiXs transition-colors hover:text-gray-900"
+      href="#/exceptions"
+    >
+      <Bell aria-hidden="true" className="h-4 w-4" />
+      {critical ? (
+        <span aria-hidden="true" className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-error-600 text-xs font-semibold leading-none text-white">
+          {critical}
+        </span>
+      ) : null}
+    </a>
+  );
+}
+
+export function TopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
+  const { pathname } = useLocation();
+  const section = navEntryFor(pathname);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-gray-200 bg-white px-4 py-3 sm:px-6 lg:px-8">
-      <div className="flex flex-wrap items-center gap-3">
+    <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
+      <div className="flex h-16 items-center gap-3">
         <Button aria-label="Open menu" className="lg:hidden" onClick={onOpenMenu} size="icon" variant="secondaryGray" leadingIcon={<Menu aria-hidden="true" className="h-4 w-4" />} />
-        <div className="mr-auto min-w-0">
-          <p className="text-sm font-semibold text-gray-900">Lumen Brands Group</p>
-          <p className="text-xs text-gray-600">
-            <time dateTime={now}>{formatDateTime(now)}</time>
-          </p>
-        </div>
-
-        <div aria-label="Demo controls" className="flex flex-wrap items-center gap-2" data-tour="demo-controls" role="group">
-          <StatusDot label={sim.paused ? "Feed paused" : "Live feed"} tone={sim.paused ? "neutral" : "success"} />
-          <Button
-            leadingIcon={sim.paused ? <Play aria-hidden="true" className="h-4 w-4" /> : <Pause aria-hidden="true" className="h-4 w-4" />}
-            onClick={() => setPaused(!sim.paused)}
-            size="sm"
-            variant="secondaryGray"
-          >
-            {sim.paused ? "Resume live feed" : "Pause live feed"}
-          </Button>
-          <SegmentedControl
-            label="Feed speed"
-            onChange={(v) => setSpeed(v === "4" ? 4 : 1)}
-            segments={[
-              { label: "1x", value: "1" },
-              { label: "4x", value: "4" },
-            ]}
-            value={String(sim.speed)}
-          />
-          <Button leadingIcon={<RotateCcw aria-hidden="true" className="h-4 w-4" />} onClick={() => setConfirmReset(true)} size="sm" variant="tertiaryGray">
-            Reset demo
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2" data-tour="role">
-          <label className="text-sm font-medium text-gray-700" htmlFor={roleId}>
-            Viewing as
-          </label>
-          <div className="w-60">
-            <Select id={roleId} onChange={(e) => setRole(e.target.value as Role)} value={role}>
-              {(Object.keys(PERSONAS) as Role[]).map((r) => (
-                <option key={r} value={r}>
-                  {PERSONAS[r].name}, {PERSONAS[r].title}
-                </option>
-              ))}
-            </Select>
-          </div>
-        </div>
+        <nav aria-label="Breadcrumb" className="mr-auto min-w-0">
+          <ol className="flex items-center gap-1.5 text-sm">
+            <li className="hidden truncate text-gray-500 sm:block">Lumen Brands Group</li>
+            <li aria-hidden="true" className="hidden text-gray-300 sm:block">
+              <ChevronRight className="h-4 w-4" />
+            </li>
+            <li aria-current="page" className="truncate font-semibold text-gray-900">
+              {section?.label ?? "Not found"}
+            </li>
+          </ol>
+        </nav>
+        <LiveStatus />
+        <Alerts />
       </div>
-
-      <Modal
-        description="This reseeds the data and clears every approval, finding decision, upload and audit entry you made."
-        footer={
-          <>
-            <Button onClick={() => setConfirmReset(false)} variant="secondaryGray">
-              Cancel
-            </Button>
-            <Button
-              onClick={() => {
-                reset();
-                setConfirmReset(false);
-                notify("Demo reset", "Fresh data from the same seed. Everything replays the same way.", "info");
-              }}
-              variant="destructive"
-            >
-              Reset demo
-            </Button>
-          </>
-        }
-        onOpenChange={setConfirmReset}
-        open={confirmReset}
-        title="Reset the demo?"
-      >
-        <p className="text-sm leading-6 text-gray-600">You will start again as {PERSONAS.analyst.name} at 09:00 UTC on 12 November 2026.</p>
-      </Modal>
     </header>
   );
 }

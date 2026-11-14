@@ -65,6 +65,16 @@ Checks at the end of the pass: `npm run lint` clean, `npm run build` clean, `npm
 * [x] README case study
 * [ ] Demo recording
 
+## Redesign pass (13 Nov 2026)
+
+- [x] Concept footer and persona banner removed. App reads as a real product: logo lockup, breadcrumb top bar, live feed status, alerts bell.
+- [x] User switcher in the bottom left of the sidebar with a hint. Feed speed, guided tour and reset live in its menu.
+- [x] Tour invitation banner at the top, dismissible. Tour card moved bottom right.
+- [x] Hub has three views: Overview, Liquidity, Risk and controls (`?view=`).
+- [x] Exceptions list is a sticky pane that scrolls on its own beside the detail. Agent filter chips.
+- [x] More color (agent tones, tinted KPI icons) and motion that respects reduced motion.
+- [x] Promotions logged in DS_CHANGES.md. Screenshots retaken.
+
 ## Notes and open questions
 * The Design System focus ring alone was too faint on white, so `.focus-ring` now adds an outline. Worth upstreaming.
 * Escalating a finding unblocks approval, as the spec says. A real bank would probably keep critical findings blocking until compliance clears them. Worth a decision.

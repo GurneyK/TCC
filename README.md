@@ -26,11 +26,11 @@ A group treasury team runs cash for a dozen entities across five banks. Every mo
 | Daniel Okafor | Group Treasurer | Approves, rejects and releases payments, books hedges |
 | Mei Lin | Internal Auditor | Reads everything, changes nothing, exports the trail |
 
-Switch between them with **Viewing as** in the top bar.
+Switch user from the account button in the bottom left of the sidebar. Deep links work too: add `?as=treasurer`, `?as=analyst` or `?as=auditor` to any URL.
 
 ## Try the 2 minute story
 
-Press **Start guided demo** on the hub, or walk it yourself:
+Press **Start tour** in the banner at the top (or open `#/?tour=1`), or walk it yourself:
 
 1. **Hub.** About 4.5 billion USD across 12 entities and 5 banks. Crestwood Trust is 26 hours stale, so every number built on it carries a Stale badge.
 2. **Exceptions.** The top finding: Orchard Packaging changed its bank details two days before a 1.84M payment. Open the evidence and the trace.

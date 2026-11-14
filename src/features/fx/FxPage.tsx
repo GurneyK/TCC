@@ -27,9 +27,8 @@ export default function FxPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        description="Net receivables minus payables per currency over the next 90 days, against forwards maturing in the same window. Policy says hedge 60% to 80%."
-        eyebrow="FX exposure"
-        title="Currency risk against policy"
+        description="90 day net exposure per currency against forwards. Policy: hedge 60% to 80%."
+        title="FX exposure"
       />
 
       <KpiStrip

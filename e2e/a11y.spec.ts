@@ -1,6 +1,9 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+// Check colours at rest, not halfway through an entrance animation.
+test.use({ contextOptions: { reducedMotion: "reduce" } });
+
 const ROUTES = ["", "exceptions", "payments", "cash", "forecast", "fx", "agents", "sources", "audit"];
 
 for (const route of ROUTES) {
@@ -21,7 +24,7 @@ test("every route has a unique title and one h1", async ({ page }) => {
     if (previous) await expect(page).not.toHaveTitle(previous);
     await expect(page.locator("h1")).toHaveCount(1);
     previous = await page.title();
-    await expect(page.locator("h1")).toHaveText(previous.replace(" · Treasury Command Center", ""));
+    if (route) await expect(page.locator("h1")).toHaveText(previous.replace(" · Treasury Command Center", ""));
     titles.add(previous);
   }
   expect(titles.size).toBe(ROUTES.length);

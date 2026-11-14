@@ -1,120 +1,72 @@
-import { ArrowRight } from "lucide-react";
 import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { SEVERITY_RANK } from "@/agents/types";
 import { Alert } from "@/components/ui/alert/Alert";
-import { Button } from "@/components/ui/button/Button";
-import { ActivityFeed } from "@/components/ui/dashboard/ActivityFeed";
-import { KpiStrip } from "@/components/ui/dashboard/KpiStrip";
+import { Tabs } from "@/components/ui/navigation/Tabs";
 import { formatDate, relativeTime } from "@/lib/dates";
 import { formatWithCode } from "@/lib/money";
-import { useOpenFindings, useStaleSources } from "@/store/hooks";
+import { useActor, useOpenFindings, useStaleSources } from "@/store/hooks";
 import { useTreasury } from "@/store/useTreasury";
-import { actorName } from "../shared/format";
-import { cashTotals, unhedgedUsd, useDaySnapshot, useExposures } from "../shared/metrics";
+import { cashTotals } from "../shared/metrics";
 import { PageHeading } from "../shared/PageHeading";
-import { StaleBadge } from "../shared/StaleBadge";
-import { CashByRegion, GroupForecastCard } from "./HubCharts";
-import { SourceHealth, TopFindings } from "./HubPanels";
+import { HubLiquidity } from "./HubLiquidity";
+import { HubOverview } from "./HubOverview";
+import { HubRisk } from "./HubRisk";
+
+const VIEWS = [
+  { value: "overview", label: "Overview" },
+  { value: "liquidity", label: "Liquidity" },
+  { value: "risk", label: "Risk and controls" },
+] as const;
+
+type View = (typeof VIEWS)[number]["value"];
+
+function greeting(iso: string) {
+  const h = new Date(iso).getUTCHours();
+  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+}
 
 export default function HubPage() {
-  const navigate = useNavigate();
+  const [params, setParams] = useSearchParams();
+  const view = (VIEWS.find((v) => v.value === params.get("view"))?.value ?? "overview") as View;
   const data = useTreasury((s) => s.data);
   const now = useTreasury((s) => s.now);
-  const audit = useTreasury((s) => s.audit);
+  const actor = useActor();
   const stale = useStaleSources();
   const open = useOpenFindings();
-  const snapshot = useDaySnapshot();
-  const exposures = useExposures(snapshot);
   const totals = useMemo(() => cashTotals(data, stale), [data, stale]);
   const staleSources = data.sources.filter((s) => stale.has(s.id));
+
+  const pending = data.payments.filter((p) => p.status === "pending_approval").length;
   const urgent = open.filter((f) => SEVERITY_RANK[f.severity] >= SEVERITY_RANK.high).length;
-  const critical = open.filter((f) => f.severity === "critical").length;
-  const usd = (minor: number) => formatWithCode({ minor, currency: "USD" }, { compact: true });
+  const todo =
+    actor.role === "treasurer"
+      ? `${pending} payment${pending === 1 ? "" : "s"} waiting for your approval`
+      : actor.role === "auditor"
+        ? "Read only access to every record and the audit trail"
+        : `${urgent} high priority finding${urgent === 1 ? "" : "s"} to review`;
 
   return (
     <div className="space-y-6">
-      <PageHeading
-        description={`One view of Lumen's cash, risk and data health. Agents watch the feeds and raise findings. People make every decision that moves money.`}
-        eyebrow={formatDate(now)}
-        title="Treasury hub"
-      />
+      <PageHeading description={`${formatDate(now)} · ${todo}`} documentTitle="Hub" title={`${greeting(now)}, ${actor.name.split(" ")[0]}`} />
 
       {staleSources.length ? (
-        <Alert title={`${staleSources.map((s) => s.name).join(", ")} is ${relativeTime(staleSources[0].lastSyncAt, now).replace(" ago", "")} stale`} variant="warning">
-          {totals.staleAccounts} accounts worth {usd(totals.staleUsd)} show their last known balance.{" "}
+        <Alert title={`${staleSources.map((s) => s.name).join(", ")} is ${relativeTime(staleSources[0].lastSyncAt, now).replace(" ago", "")} late`} variant="warning">
+          {totals.staleAccounts} accounts worth {formatWithCode({ minor: totals.staleUsd, currency: "USD" }, { compact: true })} show their last known balance.{" "}
           <a className="focus-ring rounded-habibiSm font-semibold underline" href="#/sources">
-            Check data sources
+            Fix in Data sources
           </a>
         </Alert>
       ) : null}
 
-      <div data-tour="total-cash">
-        <KpiStrip
-          ariaLabel="Key treasury numbers"
-          metrics={[
-            {
-              label: "Total cash",
-              value: usd(totals.totalUsd),
-              helper: staleSources.length ? (
-                <span className="inline-flex flex-wrap items-center gap-2">
-                  Includes stale data from {staleSources.length} source{staleSources.length === 1 ? "" : "s"}
-                  <StaleBadge lastSyncAt={staleSources[0].lastSyncAt} now={now} source={staleSources[0].name} />
-                </span>
-              ) : (
-                "Every feed is current"
-              ),
-            },
-            { label: "Available liquidity", value: usd(totals.availableUsd), helper: "Balances less holds and float" },
-            { label: "Unhedged FX exposure", value: usd(unhedgedUsd(exposures, snapshot)), helper: "Next 90 days, all non USD currencies", tone: "warning" },
-            {
-              label: "Open findings",
-              value: String(open.length),
-              delta: urgent ? `${critical} critical, ${urgent - critical} high` : undefined,
-              tone: critical ? "error" : "warning",
-              helper: (
-                <a className="focus-ring rounded-habibiSm font-semibold text-brand-700" href="#/exceptions">
-                  Review exceptions
-                </a>
-              ),
-            },
-          ]}
-        />
-      </div>
+      <Tabs
+        ariaLabel="Hub view"
+        items={VIEWS.map((v) => ({ label: v.label, value: v.value, active: v.value === view }))}
+        onSelect={(v) => setParams(v === "overview" ? {} : { view: v }, { replace: true })}
+      />
 
-      <div className="grid gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-2">
-          <GroupForecastCard snapshot={snapshot} />
-        </div>
-        <CashByRegion totals={totals} />
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-3">
-        <div className="space-y-4 xl:col-span-2">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-base font-semibold text-gray-900">Top agent findings</h2>
-            <Button onClick={() => navigate("/exceptions")} size="sm" trailingIcon={<ArrowRight aria-hidden="true" className="h-4 w-4" />} variant="tertiaryColor">
-              All exceptions
-            </Button>
-          </div>
-          <TopFindings findings={open.slice(0, 4)} />
-        </div>
-        <div className="space-y-6">
-          <SourceHealth />
-          <ActivityFeed
-            items={audit
-              .slice(-6)
-              .reverse()
-              .map((e) => ({
-                label: e.action,
-                description: `${actorName(e.actor)} · ${e.target.label}`,
-                meta: relativeTime(e.at, now),
-                status: e.action.includes("rejected") || e.action.includes("Rejected") ? "failed" : "complete",
-                type: e.actor.type === "agent" ? "agent" : e.actor.type === "user" ? "message" : "system",
-              }))}
-            title="Latest activity"
-          />
-        </div>
+      <div className="animate-rise" key={view} role="tabpanel" aria-label={VIEWS.find((v) => v.value === view)?.label}>
+        {view === "overview" ? <HubOverview totals={totals} /> : view === "liquidity" ? <HubLiquidity /> : <HubRisk />}
       </div>
     </div>
   );

@@ -34,3 +34,18 @@ All of these render exactly as before when used with no props.
 | Drawer, Modal portal | `ui/drawer/Drawer.tsx`, `ui/modal/Modal.tsx` | Fix | none | Render into `document.body` with a portal. Inside a `space-y-*` parent the fixed backdrop picked up a top margin and left a strip undimmed. | Yes |
 | Drawer, Modal close | `ui/drawer/Drawer.tsx`, `ui/modal/Modal.tsx` | a11y | none | Close icon moved from `gray-400` to `gray-500` to reach 3:1 non text contrast. | Yes |
 | Global styles | `src/index.css` | a11y | none | `.focus-ring` now adds a 2px `brand-700` outline on top of the soft ring, so focus is visible on white (WCAG 2.4.11). Added a `prefers-reduced-motion` rule and the guided demo highlight style. | Yes |
+
+## Redesign pass (13 Nov 2026)
+
+Same rules: every new prop is optional and the default render is unchanged.
+
+| Component | File | Change | Props added | Why | Upstream? |
+|---|---|---|---|---|---|
+| Avatar | `ui/avatar/Avatar.tsx` | Promote | `tone` (brand, info, success, warning, gray) | Each persona in the user switcher gets its own color. Default stays brand. | Yes |
+| UserMenu | `ui/navigation/UserMenu.tsx` | Promote + a11y | `header`, `children`, `footer` (null hides it), `className`, `id`, `aria-label` | Powers the bottom left user switcher. When labelled it renders as `role="group"`. | Yes |
+| Sidebar | `ui/layout/Sidebar.tsx` | Promote | `sections`, `header`, `footer`, `variant` ("card" or "panel"), item `countTone`, `countLabel` | Grouped nav (Today, Cash and risk, Controls) with colored counts. The panel variant fills its column, scrolls the nav and pins the footer. | Yes |
+| KpiStrip | `ui/dashboard/KpiStrip.tsx` | Promote | metric `icon`, `iconTone`; `value` accepts a node | Tinted icon tiles and animated count up values. Values use tabular numbers. | Yes |
+| Table | `ui/table/Table.tsx` | Promote | column `nowrap`, `width`; table `layout` ("auto" or "fixed") | Keeps IDs and dates on one line and stops columns shifting between tabs. | Yes |
+| LineChart | `ui/charts/LineChart.tsx` | Promote | `width`, `area` | Wider plot on desktop so labels stay readable, a soft area fill, and a draw in animation that is off under reduced motion. | Yes |
+| Global styles | `src/index.css` | Add | none | Motion utilities (`animate-rise`, `animate-pop`, `animate-grow`, `stagger`, `lift`, `sheen`, `live-pulse`, `draw-line`), `pane-sticky` for split panes and `scrollbar-thin`. All disabled under reduced motion. | Yes |
+| ChartCard | `features/shared/ChartCard.tsx` | a11y | none | The table toggle is an icon button labelled "Show {title} as a table" or "as a chart". | n/a, TCC only |

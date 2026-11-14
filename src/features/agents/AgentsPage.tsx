@@ -95,9 +95,8 @@ export default function AgentsPage() {
   return (
     <div className="space-y-6">
       <PageHeading
-        description="Four agents watch the data. Each one is a pure function of the current snapshot, so the same data always gives the same findings. They recommend. They never move money."
-        eyebrow="Agents"
-        title="Agent operations"
+        description="Four agents watch every feed and recommend. They never move money."
+        title="Agents"
       />
       <div className="grid gap-6 xl:grid-cols-2">
         {ORDER.map((id) => (

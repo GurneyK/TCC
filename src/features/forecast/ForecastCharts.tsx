@@ -51,8 +51,10 @@ export function ForecastCharts({ entity, forecast, group, scenario }: Props) {
         <ChartCard
           chart={
             <LineChart
+              area
               ariaLabel={lineTakeaway}
               className="h-auto w-full"
+              width={480}
               formatValue={(v) => compactMajor(v, currency)}
               series={[{ label: "Closing balance", values: closing }]}
               threshold={min !== undefined ? { label: `Minimum ${fmt(min, currency)}`, value: min } : undefined}

@@ -58,7 +58,7 @@ export function GuidedTour() {
   return (
     <aside
       aria-label={`Guided demo, step ${step + 1} of ${TOUR.length}`}
-      className="focus-ring fixed bottom-4 left-4 z-40 w-full max-w-sm rounded-habibiLg border border-brand-200 bg-white p-5 shadow-habibiLg"
+      className="focus-ring animate-pop fixed bottom-4 left-4 right-4 z-40 max-w-sm sm:left-auto rounded-habibiLg border border-brand-200 bg-white p-5 shadow-habibiLg"
       ref={cardRef}
       tabIndex={-1}
     >

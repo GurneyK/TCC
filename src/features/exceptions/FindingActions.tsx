@@ -8,6 +8,7 @@ import { Modal } from "@/components/ui/modal/Modal";
 import { Textarea } from "@/components/ui/textarea/Textarea";
 import { PERSONAS } from "@/data/world";
 import { formatDateTime } from "@/lib/dates";
+import { formatWithCode } from "@/lib/money";
 import { paymentIdOf } from "@/store/findingActions";
 import { useActor, useUi } from "@/store/hooks";
 import { useTreasury } from "@/store/useTreasury";
@@ -90,7 +91,13 @@ export function FindingActions({ finding }: { finding: Finding }) {
   };
 
   return (
-    <section aria-label="Actions" className="space-y-3 rounded-habibiMd border border-gray-200 bg-gray-50 p-4" data-tour="finding-actions">
+    <section aria-labelledby="rec-title" className="space-y-3 rounded-habibiLg border border-brand-200 bg-brand-25 p-4" data-tour="finding-actions">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-sm font-semibold text-gray-900" id="rec-title">
+          <span className="text-brand-700">Recommended:</span> {finding.recommendation.label}
+        </p>
+        {finding.recommendation.amount ? <p className="text-sm font-semibold tabular-nums text-gray-900">{formatWithCode(finding.recommendation.amount)}</p> : null}
+      </div>
       {finding.status === "escalated" && finding.resolution ? <p className="text-sm text-warning-700">{finding.resolution.note}</p> : null}
       <div className="flex flex-wrap gap-2">
         {isCallback ? (
@@ -112,7 +119,7 @@ export function FindingActions({ finding }: { finding: Finding }) {
         ) : null}
         {paymentLink}
       </div>
-      <p className="text-xs text-gray-600">Agents recommend. Nothing moves money until a person with the right role approves it.</p>
+      <p className="text-xs text-gray-600">Agents recommend. People with the right role approve.</p>
 
       <Modal
         description={
