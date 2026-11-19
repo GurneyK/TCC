@@ -20,20 +20,20 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClasses =
-  "focus-ring inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-habibiMd font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50";
+  "focus-ring inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-h3lMd font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "border border-brand-700 bg-brand-700 text-white shadow-habibiXs hover:bg-brand-600 hover:border-brand-600 active:bg-brand-800",
+  primary: "border border-brand-700 bg-brand-700 text-white shadow-h3lXs hover:bg-brand-600 hover:border-brand-600 active:bg-brand-800",
   secondaryColor:
-    "border border-brand-200 bg-brand-50 text-brand-700 shadow-habibiXs hover:bg-brand-100 active:bg-brand-200",
+    "border border-brand-200 bg-brand-50 text-brand-700 shadow-h3lXs hover:bg-brand-100 active:bg-brand-200",
   secondaryGray:
-    "border border-gray-300 bg-white text-gray-700 shadow-habibiXs hover:bg-gray-50 active:bg-gray-100",
+    "border border-gray-300 bg-white text-gray-700 shadow-h3lXs hover:bg-gray-50 active:bg-gray-100",
   tertiaryColor:
     "border border-transparent bg-transparent text-brand-700 hover:bg-brand-50 active:bg-brand-100",
   tertiaryGray:
     "border border-transparent bg-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-700 active:bg-gray-100",
   destructive:
-    "border border-error-600 bg-error-600 text-white shadow-habibiXs hover:bg-error-700 hover:border-error-700 active:bg-error-700",
+    "border border-error-600 bg-error-600 text-white shadow-h3lXs hover:bg-error-700 hover:border-error-700 active:bg-error-700",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

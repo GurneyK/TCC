@@ -47,7 +47,7 @@ export function Table<Row extends object>({
   };
 
   return (
-    <div className="overflow-x-auto rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
+    <div className="overflow-x-auto rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs">
       <table aria-label={caption ? undefined : ariaLabel} className={["min-w-[720px] w-full border-collapse text-left text-sm", layout === "fixed" ? "table-fixed" : ""].join(" ")}>
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead className="bg-gray-50 text-xs font-semibold uppercase tracking-[0.06em] text-gray-500">

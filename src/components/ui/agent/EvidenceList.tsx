@@ -24,7 +24,7 @@ const defaultEvidence: EvidenceItem[] = [
 
 export function EvidenceList({ items = defaultEvidence, title = "Evidence" }: EvidenceListProps) {
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs">
       <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-gray-50 px-4 py-3">
         <div className="flex items-center gap-2">
           <ShieldCheck aria-hidden="true" className="h-4 w-4 text-brand-700" />
@@ -34,9 +34,9 @@ export function EvidenceList({ items = defaultEvidence, title = "Evidence" }: Ev
       </div>
       <div className="space-y-3 p-4">
         {items.map((item, index) => (
-          <article className="rounded-habibiMd border border-gray-200 bg-white p-3" key={`${item.label}-${index}`}>
+          <article className="rounded-h3lMd border border-gray-200 bg-white p-3" key={`${item.label}-${index}`}>
             <div className="flex items-start gap-3">
-              <div className="rounded-habibiSm bg-brand-50 p-1.5 text-brand-700">
+              <div className="rounded-h3lSm bg-brand-50 p-1.5 text-brand-700">
                 <FileText aria-hidden="true" className="h-4 w-4" />
               </div>
               <div className="min-w-0 flex-1">

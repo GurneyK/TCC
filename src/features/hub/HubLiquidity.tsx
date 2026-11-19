@@ -26,7 +26,7 @@ const HEALTH: Record<Health, { label: string; variant: "error" | "warning" | "su
 
 function Card({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <h2 className="text-sm font-semibold text-gray-900">{title}</h2>
       <p className="mt-0.5 text-xs text-gray-500">{subtitle}</p>
       <div className="mt-5">{children}</div>
@@ -95,7 +95,7 @@ export function HubLiquidity() {
       />
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <section className="min-w-0 overflow-hidden rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs xl:col-span-2">
+        <section className="min-w-0 overflow-hidden rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs xl:col-span-2">
           <div className="border-b border-gray-200 px-5 py-4">
             <h2 className="text-sm font-semibold text-gray-900">Headroom by entity</h2>
             <p className="mt-0.5 text-xs text-gray-500">Lowest projected balance in 13 weeks against each minimum. Select a row to open its forecast.</p>

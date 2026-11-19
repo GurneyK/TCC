@@ -25,7 +25,7 @@ export function Modal({ children, description, footer, onOpenChange, open, title
         aria-describedby={description ? descId : undefined}
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-lg overflow-hidden rounded-habibiLg bg-white shadow-habibiLg"
+        className="w-full max-w-lg overflow-hidden rounded-h3lLg bg-white shadow-h3lLg"
         ref={ref}
         role="dialog"
         tabIndex={-1}
@@ -42,7 +42,7 @@ export function Modal({ children, description, footer, onOpenChange, open, title
             ) : null}
           </div>
           <button
-            className="focus-ring rounded-habibiSm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+            className="focus-ring rounded-h3lSm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
             onClick={() => onOpenChange(false)}
             type="button"
           >

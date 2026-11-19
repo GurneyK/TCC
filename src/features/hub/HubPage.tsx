@@ -53,7 +53,7 @@ export default function HubPage() {
       {staleSources.length ? (
         <Alert title={`${staleSources.map((s) => s.name).join(", ")} is ${relativeTime(staleSources[0].lastSyncAt, now).replace(" ago", "")} late`} variant="warning">
           {totals.staleAccounts} accounts worth {formatWithCode({ minor: totals.staleUsd, currency: "USD" }, { compact: true })} show their last known balance.{" "}
-          <a className="focus-ring rounded-habibiSm font-semibold underline" href="#/sources">
+          <a className="focus-ring rounded-h3lSm font-semibold underline" href="#/sources">
             Fix in Data sources
           </a>
         </Alert>

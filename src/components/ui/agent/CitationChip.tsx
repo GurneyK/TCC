@@ -33,7 +33,7 @@ export function CitationChip({
   return (
     <button
       className={joinClasses(
-        "focus-ring inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium shadow-habibiXs transition-colors",
+        "focus-ring inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium shadow-h3lXs transition-colors",
         toneClasses[tone],
         className,
       )}

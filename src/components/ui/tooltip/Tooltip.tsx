@@ -10,7 +10,7 @@ export function Tooltip({ children, content }: TooltipProps) {
     <span className="group relative inline-flex">
       {children}
       <span
-        className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-max max-w-60 -translate-x-1/2 rounded-habibiSm bg-gray-900 px-3 py-2 text-xs font-medium leading-5 text-white opacity-0 shadow-habibiMd transition group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 w-max max-w-60 -translate-x-1/2 rounded-h3lSm bg-gray-900 px-3 py-2 text-xs font-medium leading-5 text-white opacity-0 shadow-h3lMd transition group-hover:opacity-100 group-focus-within:opacity-100"
         role="tooltip"
       >
         {content}

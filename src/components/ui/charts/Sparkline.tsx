@@ -1,6 +1,6 @@
 export function Sparkline() {
   return (
-    <div className="rounded-habibiLg border border-gray-200 bg-white p-4 shadow-habibiXs">
+    <div className="rounded-h3lLg border border-gray-200 bg-white p-4 shadow-h3lXs">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-medium text-gray-500">Weekly usage</p>

@@ -39,7 +39,7 @@ export function Alert({ children, className, dismissible = false, onDismiss, tit
 
   return (
     <div
-      className={["flex gap-3 rounded-habibiMd border px-4 py-3 text-sm leading-6", style.box, className]
+      className={["flex gap-3 rounded-h3lMd border px-4 py-3 text-sm leading-6", style.box, className]
         .filter(Boolean)
         .join(" ")}
       role={variant === "error" ? "alert" : "status"}
@@ -51,7 +51,7 @@ export function Alert({ children, className, dismissible = false, onDismiss, tit
         <div>{children}</div>
       </div>
       {dismissible ? (
-        <button className="focus-ring -mr-1 mt-0.5 rounded-habibiSm p-1 hover:bg-white/50" onClick={onDismiss} type="button">
+        <button className="focus-ring -mr-1 mt-0.5 rounded-h3lSm p-1 hover:bg-white/50" onClick={onDismiss} type="button">
           <X className="h-4 w-4" />
           <span className="sr-only">Dismiss alert</span>
         </button>

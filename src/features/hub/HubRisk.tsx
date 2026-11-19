@@ -30,9 +30,9 @@ function AgentCards() {
         const mine = open.filter((f) => f.agentId === id);
         const counts = SEV.map((s) => ({ ...s, n: mine.filter((f) => f.severity === s.key).length }));
         return (
-          <a className="focus-ring lift group flex flex-col rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs" href={`#/exceptions?agent=${id}`} key={id}>
+          <a className="focus-ring lift group flex flex-col rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs" href={`#/exceptions?agent=${id}`} key={id}>
             <span className="flex items-center gap-3">
-              <span className={["flex h-9 w-9 items-center justify-center rounded-habibiMd", style.tile].join(" ")}>
+              <span className={["flex h-9 w-9 items-center justify-center rounded-h3lMd", style.tile].join(" ")}>
                 <Icon aria-hidden="true" className="h-5 w-5" />
               </span>
               <span className="text-sm font-semibold text-gray-900">{style.short}</span>
@@ -78,20 +78,20 @@ function PaymentPipeline() {
   const rejected = data.payments.filter((p) => p.status === "rejected").length;
 
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-gray-900">Payment pipeline</h2>
           <p className="mt-0.5 text-xs text-gray-500">Maker submits, checker approves, then release. {rejected} rejected.</p>
         </div>
-        <a className="focus-ring inline-flex items-center gap-1 rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/payments">
+        <a className="focus-ring inline-flex items-center gap-1 rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/payments">
           Payments
           <ArrowRight aria-hidden="true" className="h-4 w-4" />
         </a>
       </div>
       <ol className="stagger mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {stages.map((s, i) => (
-          <li className="relative rounded-habibiMd border border-gray-200 bg-gray-25 p-4" key={s.key}>
+          <li className="relative rounded-h3lMd border border-gray-200 bg-gray-25 p-4" key={s.key}>
             <span aria-hidden="true" className={["absolute inset-x-4 top-0 h-0.5 rounded-b-full", s.tone].join(" ")} />
             <p className="text-xs font-semibold text-gray-500">
               <span className="sr-only">Step {i + 1}: </span>
@@ -114,13 +114,13 @@ function HedgeCoverage() {
   const status = (r: number) => (r < HEDGE_POLICY.min ? { label: "Under", variant: "warning" as const, bar: "bg-warning-500" } : r > HEDGE_POLICY.max ? { label: "Over", variant: "info" as const, bar: "bg-info-500" } : { label: "In policy", variant: "success" as const, bar: "bg-success-500" });
 
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-gray-900">Hedge coverage</h2>
           <p className="mt-0.5 text-xs text-gray-500">90 day net exposure covered by forwards. Policy band 60% to 80%.</p>
         </div>
-        <a className="focus-ring inline-flex items-center gap-1 rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/fx">
+        <a className="focus-ring inline-flex items-center gap-1 rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/fx">
           FX exposure
           <ArrowRight aria-hidden="true" className="h-4 w-4" />
         </a>

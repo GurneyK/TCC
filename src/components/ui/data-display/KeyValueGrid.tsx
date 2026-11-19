@@ -19,7 +19,7 @@ const defaultItems: KeyValueGridItem[] = [
 
 export function KeyValueGrid({ items = defaultItems }: KeyValueGridProps) {
   return (
-    <dl className="grid overflow-hidden rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs sm:grid-cols-2">
+    <dl className="grid overflow-hidden rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs sm:grid-cols-2">
       {items.map((item) => (
         <div className="border-b border-gray-100 p-4 last:border-b-0 sm:border-r sm:even:border-r-0" key={item.label}>
           <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500">{item.label}</dt>

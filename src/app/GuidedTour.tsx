@@ -58,7 +58,7 @@ export function GuidedTour() {
   return (
     <aside
       aria-label={`Guided demo, step ${step + 1} of ${TOUR.length}`}
-      className="focus-ring animate-pop fixed bottom-4 left-4 right-4 z-40 max-w-sm sm:left-auto rounded-habibiLg border border-brand-200 bg-white p-5 shadow-habibiLg"
+      className="focus-ring animate-pop fixed bottom-4 left-4 right-4 z-40 max-w-sm sm:left-auto rounded-h3lLg border border-brand-200 bg-white p-5 shadow-h3lLg"
       ref={cardRef}
       tabIndex={-1}
     >
@@ -66,7 +66,7 @@ export function GuidedTour() {
         <Badge variant="brand">
           Step {step + 1} of {TOUR.length}
         </Badge>
-        <button className="focus-ring rounded-habibiSm p-1 text-gray-500 hover:bg-gray-100" onClick={stop} type="button">
+        <button className="focus-ring rounded-h3lSm p-1 text-gray-500 hover:bg-gray-100" onClick={stop} type="button">
           <X aria-hidden="true" className="h-4 w-4" />
           <span className="sr-only">End guided demo</span>
         </button>

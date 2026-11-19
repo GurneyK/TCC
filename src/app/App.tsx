@@ -17,9 +17,9 @@ function Loading() {
   return (
     <div aria-busy="true" className="space-y-4" role="status">
       <span className="sr-only">Loading page</span>
-      <div className="h-8 w-64 animate-pulse rounded-habibiMd bg-gray-100" />
-      <div className="h-32 animate-pulse rounded-habibiLg bg-gray-100" />
-      <div className="h-64 animate-pulse rounded-habibiLg bg-gray-100" />
+      <div className="h-8 w-64 animate-pulse rounded-h3lMd bg-gray-100" />
+      <div className="h-32 animate-pulse rounded-h3lLg bg-gray-100" />
+      <div className="h-64 animate-pulse rounded-h3lLg bg-gray-100" />
     </div>
   );
 }

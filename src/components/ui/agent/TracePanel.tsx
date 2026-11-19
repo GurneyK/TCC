@@ -23,7 +23,7 @@ const defaultTrace: TraceItem[] = [
 
 export function TracePanel({ badge = "Live", items = defaultTrace, title = "Execution trace" }: TracePanelProps) {
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs">
       <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-gray-50 px-4 py-3">
         <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
         {badge ? <Badge variant="brand">{badge}</Badge> : null}
@@ -39,7 +39,7 @@ export function TracePanel({ badge = "Live", items = defaultTrace, title = "Exec
             <li className="flex gap-3 p-4" key={item.label}>
               <div
                 className={[
-                  "h-fit shrink-0 rounded-habibiMd p-2",
+                  "h-fit shrink-0 rounded-h3lMd p-2",
                   done ? "bg-success-50 text-success-700" : warn ? "bg-warning-50 text-warning-700" : skipped ? "bg-gray-100 text-gray-500" : "bg-brand-50 text-brand-700",
                 ].join(" ")}
               >

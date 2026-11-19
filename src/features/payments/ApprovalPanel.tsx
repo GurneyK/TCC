@@ -52,7 +52,7 @@ export function ApprovalPanel({ payment }: { payment: Payment }) {
   return (
     <div className="space-y-3" data-tour="approval">
       {approveWhy ? (
-        <p className="flex items-start gap-2 rounded-habibiMd border border-warning-300 bg-warning-50 p-3 text-sm text-warning-700" id={whyId}>
+        <p className="flex items-start gap-2 rounded-h3lMd border border-warning-300 bg-warning-50 p-3 text-sm text-warning-700" id={whyId}>
           <Lock aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
             <span className="font-semibold">Approve is unavailable. </span>

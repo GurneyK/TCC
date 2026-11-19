@@ -24,7 +24,7 @@ interface Row {
 function Panel({ title, subtitle, action, children }: { title: string; subtitle?: string; action?: ReactNode; children: ReactNode }) {
   const id = title.toLowerCase().replace(/[^a-z]+/g, "-");
   return (
-    <section aria-labelledby={id} className="rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
+    <section aria-labelledby={id} className="rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs">
       <div className="flex items-center justify-between gap-3 border-b border-gray-200 px-5 py-4">
         <div className="min-w-0">
           <h2 className="text-sm font-semibold text-gray-900" id={id}>
@@ -79,7 +79,7 @@ export function ForYou() {
       .slice(0, 5);
     return (
       <Panel
-        action={<a className="focus-ring rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/payments">All payments</a>}
+        action={<a className="focus-ring rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/payments">All payments</a>}
         subtitle="Payments you can approve or reject"
         title="Waiting for your approval"
       >
@@ -109,7 +109,7 @@ export function ForYou() {
       .slice(-5)
       .reverse();
     return (
-      <Panel action={<a className="focus-ring rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/audit">Audit log</a>} subtitle="Latest decisions by people" title="Recent decisions">
+      <Panel action={<a className="focus-ring rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/audit">Audit log</a>} subtitle="Latest decisions by people" title="Recent decisions">
         <RowList
           rows={decisions.map((e) => ({
             key: e.id,
@@ -127,7 +127,7 @@ export function ForYou() {
   const top = open.slice(0, 5);
   return (
     <Panel
-      action={<a className="focus-ring rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/exceptions">All exceptions</a>}
+      action={<a className="focus-ring rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/exceptions">All exceptions</a>}
       subtitle="Ranked by risk and money at stake"
       title="Needs your attention"
     >
@@ -159,7 +159,7 @@ export function SourceHealth() {
   const late = sources.filter((s) => stale.has(s.id)).length;
   return (
     <Panel
-      action={<a className="focus-ring rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/sources">Manage</a>}
+      action={<a className="focus-ring rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/sources">Manage</a>}
       subtitle={late ? `${late} of ${sources.length} feeds late` : `All ${sources.length} feeds on time`}
       title="Data feeds"
     >
@@ -190,7 +190,7 @@ export function RecentActivity() {
   const tone = (e: (typeof events)[number]) =>
     e.actor.type === "agent" ? "bg-brand-500" : /reject/i.test(e.action) ? "bg-error-500" : /^(approved|released|accepted)/i.test(e.action) ? "bg-success-500" : e.actor.type === "user" ? "bg-info-500" : "bg-gray-400";
   return (
-    <Panel action={<a className="focus-ring rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/audit">Audit log</a>} title="Latest activity">
+    <Panel action={<a className="focus-ring rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800" href="#/audit">Audit log</a>} title="Latest activity">
       <ol className="px-5 py-3">
         {events.map((e, i) => (
           <li className="relative flex gap-3 pb-4 last:pb-0" key={e.id}>

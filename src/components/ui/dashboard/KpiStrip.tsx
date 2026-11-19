@@ -42,7 +42,7 @@ const tileClasses: Record<Tone, string> = {
 
 export function KpiStrip({ ariaLabel = "Key metrics", metrics = defaultMetrics }: KpiStripProps) {
   return (
-    <section aria-label={ariaLabel} className="grid overflow-hidden rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs md:grid-cols-2 xl:grid-cols-4">
+    <section aria-label={ariaLabel} className="grid overflow-hidden rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs md:grid-cols-2 xl:grid-cols-4">
       {metrics.map((metric) => {
         const TrendIcon = metric.trend === "down" ? ArrowDownRight : ArrowUpRight;
         const Icon = metric.icon;
@@ -51,7 +51,7 @@ export function KpiStrip({ ariaLabel = "Key metrics", metrics = defaultMetrics }
           <article className="border-b border-gray-200 p-5 last:border-b-0 xl:border-b-0 xl:border-r xl:last:border-r-0" key={metric.label}>
             <div className="flex items-center gap-3">
               {Icon ? (
-                <span className={["flex h-8 w-8 shrink-0 items-center justify-center rounded-habibiMd", tileClasses[metric.iconTone ?? metric.tone ?? "neutral"]].join(" ")}>
+                <span className={["flex h-8 w-8 shrink-0 items-center justify-center rounded-h3lMd", tileClasses[metric.iconTone ?? metric.tone ?? "neutral"]].join(" ")}>
                   <Icon aria-hidden="true" className="h-4 w-4" />
                 </span>
               ) : null}

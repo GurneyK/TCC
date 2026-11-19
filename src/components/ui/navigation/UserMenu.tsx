@@ -25,7 +25,7 @@ export function UserMenu({ children, className, footer, header, id, "aria-label"
   return (
     <div
       aria-label={ariaLabel}
-      className={["w-full max-w-sm overflow-hidden rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs", className].filter(Boolean).join(" ")}
+      className={["w-full max-w-sm overflow-hidden rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs", className].filter(Boolean).join(" ")}
       id={id}
       role={ariaLabel ? "group" : undefined}
     >
@@ -45,7 +45,7 @@ export function UserMenu({ children, className, footer, header, id, "aria-label"
             const Icon = item.icon;
 
             return (
-              <button className="focus-ring flex w-full items-center gap-3 rounded-habibiMd px-3 py-2 text-left hover:bg-gray-50" key={item.label} type="button">
+              <button className="focus-ring flex w-full items-center gap-3 rounded-h3lMd px-3 py-2 text-left hover:bg-gray-50" key={item.label} type="button">
                 <Icon aria-hidden="true" className="h-4 w-4 text-gray-500" />
                 <span className="min-w-0">
                   <span className="block text-sm font-semibold text-gray-900">{item.label}</span>
@@ -59,7 +59,7 @@ export function UserMenu({ children, className, footer, header, id, "aria-label"
         ? null
         : footer ?? (
             <div className="border-t border-gray-200 p-2">
-              <button className="focus-ring flex w-full items-center gap-3 rounded-habibiMd px-3 py-2 text-left text-sm font-semibold text-error-700 hover:bg-error-50" type="button">
+              <button className="focus-ring flex w-full items-center gap-3 rounded-h3lMd px-3 py-2 text-left text-sm font-semibold text-error-700 hover:bg-error-50" type="button">
                 <LogOut aria-hidden="true" className="h-4 w-4" />
                 Sign out
               </button>

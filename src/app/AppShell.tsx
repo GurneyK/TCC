@@ -20,8 +20,8 @@ import { UserSwitcher } from "./UserSwitcher";
 
 function Logo() {
   return (
-    <a className="focus-ring flex items-center gap-3 rounded-habibiMd border-b border-gray-200 px-5 py-4" href="#/">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-habibiMd bg-gradient-to-br from-brand-500 to-brand-800 text-white shadow-habibiSm">
+    <a className="focus-ring flex items-center gap-3 rounded-h3lMd border-b border-gray-200 px-5 py-4" href="#/">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-h3lMd bg-gradient-to-br from-brand-500 to-brand-800 text-white shadow-h3lSm">
         <Landmark aria-hidden="true" className="h-5 w-5" />
       </span>
       <span className="min-w-0">
@@ -95,7 +95,7 @@ export function AppShell() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
-      <a className="focus-ring sr-only z-50 rounded-habibiMd bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-habibiMd focus:not-sr-only focus:fixed focus:left-4 focus:top-4" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById("main")?.focus(); }}>
+      <a className="focus-ring sr-only z-50 rounded-h3lMd bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-h3lMd focus:not-sr-only focus:fixed focus:left-4 focus:top-4" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById("main")?.focus(); }}>
         Skip to main content
       </a>
       <div className="flex">

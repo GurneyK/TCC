@@ -46,7 +46,7 @@ const typeIcons = {
 
 export function ActivityFeed({ items = defaultItems, title = "Activity feed" }: ActivityFeedProps) {
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs">
       <div className="border-b border-gray-200 px-4 py-3">
         <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
       </div>
@@ -56,7 +56,7 @@ export function ActivityFeed({ items = defaultItems, title = "Activity feed" }: 
 
           return (
             <li className="flex gap-3 p-4" key={`${item.label}-${item.meta}-${item.description}`}>
-              <div className="mt-0.5 rounded-habibiMd bg-gray-50 p-2 text-gray-500">
+              <div className="mt-0.5 rounded-h3lMd bg-gray-50 p-2 text-gray-500">
                 <Icon aria-hidden="true" className="h-4 w-4" />
               </div>
               <div className="min-w-0 flex-1">

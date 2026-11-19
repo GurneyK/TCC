@@ -58,7 +58,7 @@ export function HubOverview({ totals }: { totals: CashTotals }) {
               delta: critical || high ? `${critical} critical, ${high} high` : undefined,
               tone: critical ? "error" : "warning",
               helper: (
-                <a className="focus-ring rounded-habibiSm font-semibold text-brand-700 hover:text-brand-800" href="#/exceptions">
+                <a className="focus-ring rounded-h3lSm font-semibold text-brand-700 hover:text-brand-800" href="#/exceptions">
                   Review exceptions
                 </a>
               ),

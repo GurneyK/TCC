@@ -22,7 +22,7 @@ export function Banner({ action, children, className, dismissible = false, title
   return (
     <div
       className={[
-        "flex flex-col gap-3 rounded-habibiLg border px-5 py-4 text-sm leading-6 sm:flex-row sm:items-center sm:justify-between",
+        "flex flex-col gap-3 rounded-h3lLg border px-5 py-4 text-sm leading-6 sm:flex-row sm:items-center sm:justify-between",
         styles[variant],
         className,
       ]
@@ -41,7 +41,7 @@ export function Banner({ action, children, className, dismissible = false, title
       <div className="flex shrink-0 items-center gap-2">
         {action}
         {dismissible ? (
-          <button className="focus-ring rounded-habibiSm p-1 hover:bg-white/50" type="button">
+          <button className="focus-ring rounded-h3lSm p-1 hover:bg-white/50" type="button">
             <X className="h-4 w-4" />
             <span className="sr-only">Dismiss banner</span>
           </button>

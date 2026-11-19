@@ -45,7 +45,7 @@ export function CsvUpload() {
   const good = (file?.parsed.rows.length ?? 0) - bad;
 
   return (
-    <section aria-labelledby="upload-title" className="space-y-4 rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs" data-tour="csv-upload">
+    <section aria-labelledby="upload-title" className="space-y-4 rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs" data-tour="csv-upload">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 className="text-base font-semibold text-gray-900" id="upload-title">
@@ -56,7 +56,7 @@ export function CsvUpload() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <a className="focus-ring inline-flex h-9 items-center gap-2 rounded-habibiMd px-3.5 text-sm font-semibold text-gray-600 hover:bg-gray-50" download href={SAMPLE}>
+          <a className="focus-ring inline-flex h-9 items-center gap-2 rounded-h3lMd px-3.5 text-sm font-semibold text-gray-600 hover:bg-gray-50" download href={SAMPLE}>
             <Download aria-hidden="true" className="h-4 w-4" />
             Download sample
           </a>

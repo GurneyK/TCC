@@ -28,10 +28,10 @@ function AgentCard({ id }: { id: AgentId }) {
   const open = findings.filter((f) => f.agentId === id && (f.status === "open" || f.status === "escalated"));
 
   return (
-    <article aria-labelledby={`agent-${id}`} className="space-y-4 rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <article aria-labelledby={`agent-${id}`} className="space-y-4 rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <header className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex gap-3">
-          <div className="h-fit rounded-habibiMd bg-brand-50 p-2 text-brand-700">
+          <div className="h-fit rounded-h3lMd bg-brand-50 p-2 text-brand-700">
             <Bot aria-hidden="true" className="h-5 w-5" />
           </div>
           <div>
@@ -68,8 +68,8 @@ function AgentCard({ id }: { id: AgentId }) {
       />
       {live ? <p className="text-sm text-gray-600">Live feed: {live.suggestions?.length ?? 0} new bank lines matched since the overnight run, rechecked every 30 seconds.</p> : null}
 
-      <details className="rounded-habibiMd border border-gray-200 p-3">
-        <summary className="focus-ring cursor-pointer rounded-habibiSm text-sm font-semibold text-gray-900">Rules this agent uses</summary>
+      <details className="rounded-h3lMd border border-gray-200 p-3">
+        <summary className="focus-ring cursor-pointer rounded-h3lSm text-sm font-semibold text-gray-900">Rules this agent uses</summary>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-600">
           {meta.rules.map((r) => (
             <li key={r}>{r}</li>

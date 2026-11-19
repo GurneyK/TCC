@@ -11,7 +11,7 @@ function LiveStatus() {
   const sim = useTreasury((s) => s.sim);
   const setPaused = useTreasury((s) => s.setPaused);
   return (
-    <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-white py-1 pl-3 pr-1 shadow-habibiXs">
+    <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-white py-1 pl-3 pr-1 shadow-h3lXs">
       <span aria-hidden="true" className={["h-2 w-2 rounded-full", sim.paused ? "bg-gray-400" : "live-pulse bg-success-500"].join(" ")} />
       <span className="ml-1 text-xs font-semibold text-gray-900">{sim.paused ? "Paused" : "Live"}</span>
       <span className="hidden text-xs text-gray-500 sm:inline">
@@ -37,7 +37,7 @@ function Alerts() {
   return (
     <a
       aria-label={critical ? `${critical} critical findings. Open exceptions` : "No critical findings. Open exceptions"}
-      className="focus-ring relative flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-habibiXs transition-colors hover:text-gray-900"
+      className="focus-ring relative flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 shadow-h3lXs transition-colors hover:text-gray-900"
       href="#/exceptions"
     >
       <Bell aria-hidden="true" className="h-4 w-4" />

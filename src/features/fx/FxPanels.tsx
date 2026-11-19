@@ -15,7 +15,7 @@ export function Recommendations({ findings }: { findings: Finding[] }) {
   const notify = useUi((s) => s.notify);
   if (!findings.length) {
     return (
-      <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+      <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
         <h2 className="text-sm font-semibold text-gray-900">Recommendations</h2>
         <p className="mt-2 text-sm text-gray-600">Every currency is inside policy.</p>
       </section>
@@ -27,7 +27,7 @@ export function Recommendations({ findings }: { findings: Finding[] }) {
         Recommendations
       </h2>
       {findings.map((f) => (
-        <article className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs" data-tour={f.id === "fx-EUR-under" ? "fx-rec" : undefined} key={f.id}>
+        <article className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs" data-tour={f.id === "fx-EUR-under" ? "fx-rec" : undefined} key={f.id}>
           <div className="flex flex-wrap items-center gap-2">
             <SeverityBadge severity={f.severity} />
             <FindingStatusBadge status={f.status} />

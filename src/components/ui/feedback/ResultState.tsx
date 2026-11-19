@@ -28,7 +28,7 @@ export function ResultState({
   const Icon = config.icon;
 
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white p-8 text-center shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white p-8 text-center shadow-h3lXs">
       <div className={["mx-auto flex h-12 w-12 items-center justify-center rounded-full", config.iconClass].join(" ")}>
         <Icon aria-hidden="true" className="h-6 w-6" />
       </div>

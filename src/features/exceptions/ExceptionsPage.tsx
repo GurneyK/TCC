@@ -110,8 +110,8 @@ export default function ExceptionsPage() {
                     <button
                       aria-current={active ? "true" : undefined}
                       className={[
-                        "focus-ring relative w-full overflow-hidden rounded-habibiLg border py-3.5 pl-5 pr-4 text-left transition-all",
-                        active ? "border-brand-300 bg-white shadow-habibiMd" : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-habibiSm",
+                        "focus-ring relative w-full overflow-hidden rounded-h3lLg border py-3.5 pl-5 pr-4 text-left transition-all",
+                        active ? "border-brand-300 bg-white shadow-h3lMd" : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-h3lSm",
                       ].join(" ")}
                       data-tour={i === 0 ? "top-finding" : undefined}
                       onClick={() => set({ f: f.id })}
@@ -138,7 +138,7 @@ export default function ExceptionsPage() {
           </nav>
           <div className={["scroll-mt-24 xl:col-span-7 2xl:col-span-8", requested ? "" : "hidden xl:block"].join(" ")} ref={detailRef}>
             {requested ? (
-              <button className="focus-ring mb-3 inline-flex items-center gap-1.5 rounded-habibiSm text-sm font-semibold text-brand-700 hover:text-brand-800 xl:hidden" onClick={() => set({ f: null })} type="button">
+              <button className="focus-ring mb-3 inline-flex items-center gap-1.5 rounded-h3lSm text-sm font-semibold text-brand-700 hover:text-brand-800 xl:hidden" onClick={() => set({ f: null })} type="button">
                 <ArrowLeft aria-hidden="true" className="h-4 w-4" />
                 All findings
               </button>

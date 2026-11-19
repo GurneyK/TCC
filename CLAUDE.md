@@ -113,7 +113,7 @@ Templates (`src/components/templates/*`) are reference compositions. Read them t
 
 ### Styling rules
 
-* Only Design System tokens through Tailwind classes: `brand-*`, `gray-*`, `success-*`, `warning-*`, `error-*`, `info-*`, `rounded-habibiSm|Md|Lg|Xl`, `shadow-habibiXs|Sm|Md|Lg`. (The token names in code still say `habibi`. That's fine in code, just call it the Design System in writing.)
+* Only Design System tokens through Tailwind classes: `brand-*`, `gray-*`, `success-*`, `warning-*`, `error-*`, `info-*`, `rounded-h3lSm|Md|Lg|Xl`, `shadow-h3lXs|Sm|Md|Lg`. (The token names in code still say `h3l`. That's fine in code, just call it the Design System in writing.)
 * No raw hex values, no arbitrary Tailwind values like `text-[#123456]`, no custom shadows.
 * Only use variants that exist on the entry.
 * Use the `focus-ring` class for custom focusable elements.

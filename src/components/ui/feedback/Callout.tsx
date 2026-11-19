@@ -15,9 +15,9 @@ export function Callout({
   const Icon = tone === "policy" ? ShieldAlert : Lightbulb;
 
   return (
-    <aside className={["rounded-habibiLg border p-5", tone === "policy" ? "border-warning-300 bg-warning-50" : "border-brand-200 bg-brand-50"].join(" ")}>
+    <aside className={["rounded-h3lLg border p-5", tone === "policy" ? "border-warning-300 bg-warning-50" : "border-brand-200 bg-brand-50"].join(" ")}>
       <div className="flex items-start gap-3">
-        <div className={["rounded-habibiMd bg-white/70 p-2", tone === "policy" ? "text-warning-700" : "text-brand-700"].join(" ")}>
+        <div className={["rounded-h3lMd bg-white/70 p-2", tone === "policy" ? "text-warning-700" : "text-brand-700"].join(" ")}>
           <Icon aria-hidden="true" className="h-5 w-5" />
         </div>
         <div>

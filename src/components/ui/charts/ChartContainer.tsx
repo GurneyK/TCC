@@ -9,7 +9,7 @@ export interface ChartContainerProps {
 
 export function ChartContainer({ children, description, title, toolbar }: ChartContainerProps) {
   return (
-    <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-semibold text-gray-900">{title}</h3>

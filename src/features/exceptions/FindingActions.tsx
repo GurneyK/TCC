@@ -62,7 +62,7 @@ export function FindingActions({ finding }: { finding: Finding }) {
   if (actor.role === "auditor") {
     return (
       <div className="space-y-2" data-tour="finding-actions">
-        <p className="rounded-habibiMd border border-gray-200 bg-gray-50 p-3 text-sm text-gray-700">Read only. Analysts and treasurers resolve findings.</p>
+        <p className="rounded-h3lMd border border-gray-200 bg-gray-50 p-3 text-sm text-gray-700">Read only. Analysts and treasurers resolve findings.</p>
         {paymentLink}
       </div>
     );
@@ -91,7 +91,7 @@ export function FindingActions({ finding }: { finding: Finding }) {
   };
 
   return (
-    <section aria-labelledby="rec-title" className="space-y-3 rounded-habibiLg border border-brand-200 bg-brand-25 p-4" data-tour="finding-actions">
+    <section aria-labelledby="rec-title" className="space-y-3 rounded-h3lLg border border-brand-200 bg-brand-25 p-4" data-tour="finding-actions">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-sm font-semibold text-gray-900" id="rec-title">
           <span className="text-brand-700">Recommended:</span> {finding.recommendation.label}
@@ -149,7 +149,7 @@ export function FindingActions({ finding }: { finding: Finding }) {
               <legend className="text-sm font-medium text-gray-700">What did the callback find?</legend>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {(["confirmed", "not_confirmed"] as const).map((o) => (
-                  <label className={["focus-within:focus-ring flex cursor-pointer items-start gap-2 rounded-habibiMd border p-3 text-sm", outcome === o ? "border-brand-300 bg-brand-50" : "border-gray-300 bg-white"].join(" ")} key={o}>
+                  <label className={["focus-within:focus-ring flex cursor-pointer items-start gap-2 rounded-h3lMd border p-3 text-sm", outcome === o ? "border-brand-300 bg-brand-50" : "border-gray-300 bg-white"].join(" ")} key={o}>
                     <input checked={outcome === o} className="mt-1" name="callback" onChange={() => { setOutcome(o); setError(""); }} type="radio" />
                     <span>
                       <span className="block font-semibold text-gray-900">{o === "confirmed" ? "Confirmed" : "Not confirmed"}</span>

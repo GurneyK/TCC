@@ -36,7 +36,7 @@ export function Toast({ children, title, variant = "info" }: ToastProps) {
   const style = styles[variant];
 
   return (
-    <div className={["flex w-full max-w-sm gap-3 rounded-habibiLg border p-4 shadow-habibiMd", style.box].join(" ")} role="status">
+    <div className={["flex w-full max-w-sm gap-3 rounded-h3lLg border p-4 shadow-h3lMd", style.box].join(" ")} role="status">
       <span className="shrink-0">{style.icon}</span>
       <div className="min-w-0">
         <p className="text-sm font-semibold">{title}</p>

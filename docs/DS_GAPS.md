@@ -44,6 +44,6 @@ These were composed in `src/features/shared` and `src/app` from existing Design 
 * **Closest existing entries:** `card`, `badge`, `button`
 * **Likely props:** `step`, `total`, `title`, `body`, `onNext`, `onBack`, `onClose`, `action`
 * **Variants:** none
-* **Tokens:** `brand-200` border, `shadow-habibiLg`
+* **Tokens:** `brand-200` border, `shadow-h3lLg`
 * **Accessibility requirements:** labelled landmark, takes focus on each step, Escape ends the tour, never traps focus
 * **Status:** built in TCC as `app/GuidedTour.tsx`

@@ -16,7 +16,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
             <span className="mt-1 h-3 w-3 rounded-full border-2 border-brand-700 bg-white" />
             {index < items.length - 1 ? <span className="mt-1 h-full min-h-12 w-px bg-gray-200" /> : null}
           </div>
-          <div className="min-w-0 flex-1 rounded-habibiLg border border-gray-200 bg-white p-4 shadow-habibiXs">
+          <div className="min-w-0 flex-1 rounded-h3lLg border border-gray-200 bg-white p-4 shadow-h3lXs">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-sm font-semibold text-gray-900">{item.title}</p>
               <span className="text-xs text-gray-500">{item.time}</span>

@@ -37,10 +37,10 @@ export function DataSourceCard({
   viewLabel = "View sources",
 }: DataSourceCardProps) {
   return (
-    <article className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+    <article className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 gap-3">
-          <div className="rounded-habibiLg bg-brand-50 p-3 text-brand-700">
+          <div className="rounded-h3lLg bg-brand-50 p-3 text-brand-700">
             <Database aria-hidden="true" className="h-5 w-5" />
           </div>
           <div className="min-w-0">
@@ -51,14 +51,14 @@ export function DataSourceCard({
         <Badge variant={status === "connected" ? "success" : "warning"}>{statusLabel ?? (status === "connected" ? "Connected" : "Review")}</Badge>
       </div>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-habibiMd bg-gray-50 p-3">
+        <div className="rounded-h3lMd bg-gray-50 p-3">
           <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
             <FileText aria-hidden="true" className="h-4 w-4 text-gray-400" />
             {volumeLabel}
           </div>
           <p className="mt-2 text-lg font-semibold text-gray-900">{documents}</p>
         </div>
-        <div className="rounded-habibiMd bg-gray-50 p-3">
+        <div className="rounded-h3lMd bg-gray-50 p-3">
           <div className="flex items-center gap-2 text-sm font-medium text-gray-600">
             <ShieldCheck aria-hidden="true" className="h-4 w-4 text-success-600" />
             {policyLabel}

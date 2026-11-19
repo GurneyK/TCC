@@ -60,7 +60,7 @@ export function UserSwitcher({ onNavigate }: { onNavigate?: () => void }) {
         <div className="animate-pop absolute bottom-full left-0 right-0 z-40 mb-2">
           <UserMenu
             aria-label="Switch user"
-            className="max-w-none shadow-habibiLg"
+            className="max-w-none shadow-h3lLg"
             footer={
               <div className="space-y-3 border-t border-gray-200 p-3">
                 <div className="flex items-center justify-between gap-3">
@@ -117,7 +117,7 @@ export function UserSwitcher({ onNavigate }: { onNavigate?: () => void }) {
                     <button
                       aria-current={current ? "true" : undefined}
                       className={[
-                        "focus-ring flex w-full items-center gap-3 rounded-habibiMd px-3 py-2 text-left transition-colors",
+                        "focus-ring flex w-full items-center gap-3 rounded-h3lMd px-3 py-2 text-left transition-colors",
                         current ? "bg-brand-50" : "hover:bg-gray-50",
                       ].join(" ")}
                       onClick={() => choose(r)}
@@ -138,7 +138,7 @@ export function UserSwitcher({ onNavigate }: { onNavigate?: () => void }) {
         </div>
       ) : null}
 
-      <p className="mb-2 flex items-center gap-2 rounded-habibiMd bg-brand-50 px-3 py-2 text-xs font-medium text-brand-700">
+      <p className="mb-2 flex items-center gap-2 rounded-h3lMd bg-brand-50 px-3 py-2 text-xs font-medium text-brand-700">
         <Users aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
         Switch user to see another role
       </p>
@@ -146,7 +146,7 @@ export function UserSwitcher({ onNavigate }: { onNavigate?: () => void }) {
         aria-controls={open ? menuId : undefined}
         aria-expanded={open}
         aria-label={`Signed in as ${me.name}, ${me.title}. Switch user`}
-        className="focus-ring flex w-full items-center gap-3 rounded-habibiMd px-2 py-2 text-left transition-colors hover:bg-gray-50"
+        className="focus-ring flex w-full items-center gap-3 rounded-h3lMd px-2 py-2 text-left transition-colors hover:bg-gray-50"
         data-tour="role"
         onClick={() => setOpen((o) => !o)}
         ref={button}

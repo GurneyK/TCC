@@ -66,16 +66,16 @@ const config: Config = {
         }
       },
       borderRadius: {
-        habibiSm: "6px",
-        habibiMd: "8px",
-        habibiLg: "12px",
-        habibiXl: "16px"
+        h3lSm: "6px",
+        h3lMd: "8px",
+        h3lLg: "12px",
+        h3lXl: "16px"
       },
       boxShadow: {
-        habibiXs: "0 1px 2px rgba(16, 24, 40, 0.05)",
-        habibiSm: "0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)",
-        habibiMd: "0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06)",
-        habibiLg: "0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)"
+        h3lXs: "0 1px 2px rgba(16, 24, 40, 0.05)",
+        h3lSm: "0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06)",
+        h3lMd: "0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06)",
+        h3lLg: "0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)"
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],

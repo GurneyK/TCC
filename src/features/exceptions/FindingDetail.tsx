@@ -42,7 +42,7 @@ export function FindingDetail({ finding }: { finding: Finding }) {
   };
 
   return (
-    <article aria-labelledby="finding-title" className="animate-rise overflow-hidden rounded-habibiLg border border-gray-200 bg-white shadow-habibiXs" data-tour="finding-detail">
+    <article aria-labelledby="finding-title" className="animate-rise overflow-hidden rounded-h3lLg border border-gray-200 bg-white shadow-h3lXs" data-tour="finding-detail">
       <div aria-hidden="true" className={["h-1", SEVERITY_EDGE[finding.severity]].join(" ")} />
       <div className="space-y-5 p-6">
         <header>
@@ -57,11 +57,11 @@ export function FindingDetail({ finding }: { finding: Finding }) {
           <p className="mt-2 text-sm leading-6 text-gray-700">{finding.summary}</p>
         </header>
 
-        <dl className="grid gap-px overflow-hidden rounded-habibiMd border border-gray-200 bg-gray-200 sm:grid-cols-3">
+        <dl className="grid gap-px overflow-hidden rounded-h3lMd border border-gray-200 bg-gray-200 sm:grid-cols-3">
           <div className="bg-white p-4">
             <dt className="text-xs font-medium text-gray-500">Raised by</dt>
             <dd className="mt-1.5 flex items-center gap-2 text-sm font-semibold text-gray-900">
-              <span className={["flex h-6 w-6 items-center justify-center rounded-habibiSm", style.tile].join(" ")}>
+              <span className={["flex h-6 w-6 items-center justify-center rounded-h3lSm", style.tile].join(" ")}>
                 <AgentIcon aria-hidden="true" className="h-3.5 w-3.5" />
               </span>
               {style.short}

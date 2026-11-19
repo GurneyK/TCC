@@ -61,7 +61,7 @@ export function Avatar({
           "inline-flex items-center justify-center overflow-hidden border border-gray-200 font-semibold",
           toneClasses[tone],
           sizeClasses[size],
-          isAgent ? "rounded-habibiMd" : "rounded-full",
+          isAgent ? "rounded-h3lMd" : "rounded-full",
           className,
         )}
         role={alt ? "img" : undefined}

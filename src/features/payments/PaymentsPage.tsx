@@ -93,13 +93,13 @@ export default function PaymentsPage() {
       />
 
       <ul aria-label={`${current.label} payments`} className="stagger space-y-2 md:hidden">
-        {rows.length === 0 ? <li className="rounded-habibiLg border border-gray-200 bg-white p-4 text-sm text-gray-600">Nothing in this queue.</li> : null}
+        {rows.length === 0 ? <li className="rounded-h3lLg border border-gray-200 bg-white p-4 text-sm text-gray-600">Nothing in this queue.</li> : null}
         {rows.map((p) => {
           const s = scores.get(p.id)?.score;
           return (
             <li key={p.id}>
               <button
-                className={["focus-ring w-full rounded-habibiLg border bg-white p-4 text-left shadow-habibiXs transition-colors", p.id === selectedId ? "border-brand-300" : "border-gray-200 hover:border-gray-300"].join(" ")}
+                className={["focus-ring w-full rounded-h3lLg border bg-white p-4 text-left shadow-h3lXs transition-colors", p.id === selectedId ? "border-brand-300" : "border-gray-200 hover:border-gray-300"].join(" ")}
                 onClick={() => set({ p: p.id })}
                 type="button"
               >

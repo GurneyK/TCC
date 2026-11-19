@@ -18,10 +18,10 @@ export function FundingCard({ finding }: { finding: Finding }) {
   const open = finding.status === "open" || finding.status === "escalated";
 
   return (
-    <article className="rounded-habibiLg border border-brand-200 bg-brand-50 p-5 shadow-habibiXs">
+    <article className="rounded-h3lLg border border-brand-200 bg-brand-50 p-5 shadow-h3lXs">
       <div className="space-y-4">
         <div className="flex min-w-0 gap-3">
-          <div className="h-fit rounded-habibiMd bg-white p-2 text-brand-700">
+          <div className="h-fit rounded-h3lMd bg-white p-2 text-brand-700">
             <Landmark aria-hidden="true" className="h-5 w-5" />
           </div>
           <div className="min-w-0">

@@ -55,7 +55,7 @@ export function PaymentDrawer({ assessment, onClose, paymentId }: { paymentId: s
           {assessment && assessment.checks.length ? (
             <ul className="space-y-2">
               {assessment.checks.map((c) => (
-                <li className="rounded-habibiMd border border-gray-200 p-3" key={c.key}>
+                <li className="rounded-h3lMd border border-gray-200 p-3" key={c.key}>
                   <div className="flex items-center gap-2">
                     <SeverityBadge severity={c.severity} />
                     <span className="text-sm font-semibold text-gray-900">{c.title}</span>
@@ -76,7 +76,7 @@ export function PaymentDrawer({ assessment, onClose, paymentId }: { paymentId: s
             </h3>
             {linked.map((f) => (
               <button
-                className="focus-ring flex w-full items-center justify-between gap-3 rounded-habibiMd border border-gray-200 p-3 text-left hover:bg-gray-50"
+                className="focus-ring flex w-full items-center justify-between gap-3 rounded-h3lMd border border-gray-200 p-3 text-left hover:bg-gray-50"
                 key={f.id}
                 onClick={() => navigate(`/exceptions?f=${encodeURIComponent(f.id)}`)}
                 type="button"

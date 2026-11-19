@@ -26,7 +26,7 @@ export function Drawer({ children, description, footer, onOpenChange, open, side
         aria-labelledby={titleId}
         aria-modal="true"
         className={[
-          "fixed top-0 flex h-full w-full max-w-md flex-col border-gray-200 bg-white shadow-habibiLg sm:max-w-lg",
+          "fixed top-0 flex h-full w-full max-w-md flex-col border-gray-200 bg-white shadow-h3lLg sm:max-w-lg",
           side === "right" ? "right-0 border-l" : "left-0 border-r",
         ].join(" ")}
         onClick={(event) => event.stopPropagation()}
@@ -42,7 +42,7 @@ export function Drawer({ children, description, footer, onOpenChange, open, side
             {description ? <p className="mt-1 text-sm text-gray-500">{description}</p> : null}
           </div>
           <button
-            className="focus-ring rounded-habibiSm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+            className="focus-ring rounded-h3lSm p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
             onClick={() => onOpenChange(false)}
             type="button"
           >

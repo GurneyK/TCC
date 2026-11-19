@@ -1,6 +1,6 @@
 export const chartTokens = {
-  brand: "var(--habibi-brand-700)",
-  brandSoft: "var(--habibi-brand-500)",
-  grid: "var(--habibi-gray-100)",
-  info: "var(--habibi-info-500)",
+  brand: "var(--h3l-brand-700)",
+  brandSoft: "var(--h3l-brand-500)",
+  grid: "var(--h3l-gray-100)",
+  info: "var(--h3l-info-500)",
 } as const;

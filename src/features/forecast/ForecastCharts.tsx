@@ -112,7 +112,7 @@ export function ForecastCharts({ entity, forecast, group, scenario }: Props) {
             title="Drivers"
           />
         ) : (
-          <section className="rounded-habibiLg border border-gray-200 bg-white p-5 shadow-habibiXs">
+          <section className="rounded-h3lLg border border-gray-200 bg-white p-5 shadow-h3lXs">
             <h3 className="text-sm font-semibold text-gray-900">Drivers</h3>
             <p className="mt-2 text-sm leading-6 text-gray-600">Drivers are in local currency, so they show per entity. Pick an entity above to see them.</p>
           </section>

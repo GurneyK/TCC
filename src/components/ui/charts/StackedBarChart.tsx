@@ -39,7 +39,7 @@ export function StackedBarChart({ ariaLabel = "Stacked bar chart", bars = defaul
       {bars.map((bar) => (
         <div className="grid grid-cols-[44px_minmax(0,1fr)] items-center gap-3" key={bar.label}>
           <span className="text-xs font-medium text-gray-500">{bar.label}</span>
-          <div className="relative flex h-8 overflow-hidden rounded-habibiMd bg-gray-100">
+          <div className="relative flex h-8 overflow-hidden rounded-h3lMd bg-gray-100">
             {bar.segments.map((segment, index) => (
               <span className={toneClass[segment.tone]} key={`${bar.label}-${index}`} style={{ width: `${Math.max(0, Math.min(100, segment.percent))}%` }} />
             ))}

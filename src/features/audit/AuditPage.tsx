@@ -91,7 +91,7 @@ export default function AuditPage() {
         title="Audit log"
       />
 
-      <div aria-label="Filter the audit log" className="grid gap-3 rounded-habibiLg border border-gray-200 bg-white p-4 shadow-habibiXs md:grid-cols-2 xl:grid-cols-5" data-tour="audit-filters" role="search">
+      <div aria-label="Filter the audit log" className="grid gap-3 rounded-h3lLg border border-gray-200 bg-white p-4 shadow-h3lXs md:grid-cols-2 xl:grid-cols-5" data-tour="audit-filters" role="search">
         <div>
           <label className="text-sm font-medium text-gray-700" htmlFor={ids.actor}>
             Actor type
